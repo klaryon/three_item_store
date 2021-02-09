@@ -5,10 +5,10 @@ import Shop from "./screens/Shop/Shop";
 
 const App = () => {
   return (
-      <Switch>
-        <Route exact path="/" component={Product} />
-        <Route exact path="/shop" component={Shop}/>
-      </Switch>
+    <Switch>
+      <Route exact path="/" component={Product} />
+      <Route exact path="/shop" component={Shop}/>
+    </Switch>
   );
 }
 
