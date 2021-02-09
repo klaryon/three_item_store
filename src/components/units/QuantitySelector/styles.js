@@ -21,5 +21,9 @@ export const Button = styled.button`
     &:focus {
         outline: none;
         box-shadow: 0px 0px 2px ${Colors.leaf};
-    } 
+    }
+
+    &:hover {
+        background-color: rgb(${Colors.leafRgb},0.1);
+    }
 `;

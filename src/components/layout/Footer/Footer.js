@@ -3,9 +3,7 @@ import StyledFooter from "./styles"
 
 const Footer = () => {
     return (
-        <StyledFooter>
-            <h1>Made with ❤️ by klaryon</h1>
-        </StyledFooter>
+        <StyledFooter>Made with ❤️ by klaryon</StyledFooter>
     )
 }
 

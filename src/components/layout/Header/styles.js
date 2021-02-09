@@ -21,6 +21,10 @@ export const StyledLink = styled.div`
         text-decoration: none;
         color: ${Colors.black};
     }
+
+    & > a:hover {
+        color: ${Colors.leaf};
+    }
 `;
 export const StyledParagraph = styled.p`
     font-style: italic;

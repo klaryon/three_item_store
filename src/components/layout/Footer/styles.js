@@ -5,6 +5,7 @@ const StyledFooter = styled.footer`
     padding-bottom: 0.5rem;
     padding-right: 3rem;
     text-align: right;
-    font-size: 0.47rem;
+    font-size: 1rem;
+    font-weight: bold;
 `
 export default StyledFooter;
