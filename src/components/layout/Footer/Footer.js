@@ -4,7 +4,7 @@ import StyledFooter from "./styles"
 const Footer = () => {
     return (
         <StyledFooter>
-            <h1>Made with ❤️ by Clarissa</h1>
+            <h1>Made with ❤️ by klaryon</h1>
         </StyledFooter>
     )
 }
