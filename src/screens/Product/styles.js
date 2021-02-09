@@ -1,7 +1,8 @@
 import styled from "styled-components"
 
-const StyledProduct = styled.div`
-    background-color: blue;
-`
-
-export default StyledProduct;
+export const StyledProduct = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+`;

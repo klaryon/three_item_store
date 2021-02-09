@@ -1,12 +1,15 @@
 import React from "react";
 import Body from "../../components/layout/Body/Body";
-import StyledProduct from "./styles"
+import { StyledProduct } from "./styles"
+import CardItem from "../../components/units/CardItem/CardItem"
 
 const Product = () => {
     return (
         <Body>
             <StyledProduct>
-                <h1>I'm a curious item</h1>
+                <CardItem/>
+                <CardItem/>
+                <CardItem/>
             </StyledProduct>
         </Body>
     )
