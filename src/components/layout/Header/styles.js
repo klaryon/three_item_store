@@ -28,3 +28,6 @@ export const StyledParagraph = styled.p`
     padding-top: 0rem;
     padding-bottom: 0.5rem;
 `;
+export const Logo = styled.h1`
+    font-weight: bold;
+`;

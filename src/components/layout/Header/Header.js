@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom"
-import { StyledHeader, StyledLink, StyledParagraph }from "./styles"
+import { StyledHeader, StyledLink, StyledParagraph, Logo }from "./styles"
 import Cart from "../../units/Cart/Cart"
 
 const Header = () => {
     return (
         <>
             <StyledHeader>
-                <h1>🍵🍓☕ 3 item store</h1>
+                <Logo>🍵🍓☕ 3 item store</Logo>
                 <StyledLink>
                     <Link to="/">Products</Link>
                     <Link to="/shop">Shop<Cart/></Link>
