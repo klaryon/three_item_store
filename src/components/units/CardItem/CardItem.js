@@ -1,27 +1,40 @@
-import React from "react"
+import React, {useState} from "react"
 import { StyledCartItem, StyledCardBody, Name, Price, SmallParagraph, StyledQuantitySelector } from "./styles"
 import QuantitySelector from "../QuantitySelector/QuantitySelector"
 
-const CardItem = ({data}) => {
-    const cardItem = data.map((data,id) => (
-            <StyledCartItem key={id}>
-                <img src={data.image} alt={data.name}/>
-                <StyledCardBody>
-                    <Name>{data.name}</Name>
-                    <Price>€ {data.price}</Price>
-                    <SmallParagraph>{data.description}</SmallParagraph>
-                </StyledCardBody>
-                <StyledQuantitySelector>
-                    <QuantitySelector />
-                </StyledQuantitySelector>
-            </StyledCartItem>
-        )
-    )
+const CardItem = ({item, onSelectedItem}) => {
+
+    const [count, setCount] = useState(0);
+
+    const increment = () => {
+        setCount(prevCount => prevCount + 1)
+    }
+
+    const decrement = () => { 
+        if(count > 0) {
+        setCount(prevCount => prevCount - 1)}
+    }
+
+    console.log(count)
+
+    const handleChange = () => {
+        onSelectedItem(item, count)
+        console.log(count)
+    }
 
     return (
-        <>
-            {cardItem}
-        </>
+        // <StyledCartItem onChange={() => onSelectedItem(data, count) }>     
+        <StyledCartItem onChange={handleChange}>
+            <img src={item.image} alt={item.name}/>
+            <StyledCardBody>
+                <Name>{item.name}</Name>
+                <Price>€ {item.price}</Price>
+                <SmallParagraph>{item.description}</SmallParagraph>
+            </StyledCardBody>
+            <StyledQuantitySelector>
+                <QuantitySelector count={count} increment={increment} decrement={decrement}/>
+            </StyledQuantitySelector>
+        </StyledCartItem>
     )
 }
 

@@ -7,8 +7,9 @@ export const StyledCounter = styled.div`
 export const Paragraph = styled.p`
     color: ${Colors.leaf};
     font-weight: bold;
-    width: 3.5rem;
+    width: 3rem;
     text-align: center;
+    border: none;
 `;
 export const Button = styled.button`
     color: ${Colors.leaf};
@@ -24,6 +25,6 @@ export const Button = styled.button`
     }
 
     &:hover {
-        background-color: rgb(${Colors.leafRgb},0.1);
+        background-color: rgba(${Colors.leafRgb},0.1);
     }
 `;
