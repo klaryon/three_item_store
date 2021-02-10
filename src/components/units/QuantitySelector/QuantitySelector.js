@@ -1,14 +1,16 @@
 import React from "react"
-import { StyledCounter, Paragraph, Button } from "./styles"
+import { StyledCounter, Input, Button } from "./styles"
 
-const QuantitySelector = ({count, increment, decrement, onChange}) => {
+const QuantitySelector = ({count, increment, decrement, handleChange}) => {
     return (
         <StyledCounter>
             <Button onClick={decrement}>-</Button>
-            <Paragraph>{count}</Paragraph>
+            <Input onChange={handleChange} value={isNaN(count) ? '' : count} />
             <Button onClick={increment}>+</Button>
         </StyledCounter>
     )
 }
 
 export default QuantitySelector;
+
+//https://stackoverflow.com/questions/59446110/how-to-handle-nan-in-controlled-input-element-with-value-of-type-number

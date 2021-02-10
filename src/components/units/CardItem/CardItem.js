@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useState, useEffect } from "react"
 import { StyledCartItem, StyledCardBody, Name, Price, SmallParagraph, StyledQuantitySelector } from "./styles"
 import QuantitySelector from "../QuantitySelector/QuantitySelector"
 
@@ -15,16 +15,17 @@ const CardItem = ({item, onSelectedItem}) => {
         setCount(prevCount => prevCount - 1)}
     }
 
-    console.log(count)
-
-    const handleChange = () => {
-        onSelectedItem(item, count)
-        console.log(count)
+    const handleChange = (e) => {
+        setCount(parseInt(e.target.value))
     }
 
-    return (
-        // <StyledCartItem onChange={() => onSelectedItem(data, count) }>     
-        <StyledCartItem onChange={handleChange}>
+    useEffect(() => {
+        // onSelectedItem(item, count)
+        console.log(count)
+    }, [count])
+
+    return ( 
+        <StyledCartItem>
             <img src={item.image} alt={item.name}/>
             <StyledCardBody>
                 <Name>{item.name}</Name>
@@ -32,7 +33,7 @@ const CardItem = ({item, onSelectedItem}) => {
                 <SmallParagraph>{item.description}</SmallParagraph>
             </StyledCardBody>
             <StyledQuantitySelector>
-                <QuantitySelector count={count} increment={increment} decrement={decrement}/>
+                <QuantitySelector count={count} handleChange={(e) => handleChange(e)} increment={increment} decrement={decrement}/>
             </StyledQuantitySelector>
         </StyledCartItem>
     )
