@@ -1,12 +1,19 @@
 import React from "react";
 import Body from "../../components/layout/Body/Body";
+import CartLine from "../../components/units/CartLine/CartLine"
 import StyledShop from "./styles"
 
-const Shop = () => {
+const Shop = ({cart}) => {
+
+    const cartLine = cart.map((item) => (
+        <CartLine item={item} key={item.item.id} />
+    )
+)
     return (
-        <Body>
+        <Body cart={cart} >
             <StyledShop>
-                <h1>I'm not sure I want to buy yet</h1>
+                {cartLine}
+                {cart}
             </StyledShop>
         </Body>
     )

@@ -48,7 +48,7 @@ const App = () => {
   return (
     <Switch>
       <Route exact path="/" component={() => <Product items={data} handleAddCart={handleAddCart} />} />
-      <Route exact path="/shop" component={() => <Shop />}/>
+      <Route exact path="/shop" component={() => <Shop cart={cart} />}/>
     </Switch>
   );
 }
