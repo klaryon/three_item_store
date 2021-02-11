@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { StyledCartItem, StyledCardBody, Name, Price, SmallParagraph, StyledQuantitySelector } from "./styles"
 import QuantitySelector from "../QuantitySelector/QuantitySelector"
 
-const CardItem = ({item, onSelectedItem}) => {
+const CardItem = ({item, handleAddCart}) => {
 
     const [count, setCount] = useState(0);
 
@@ -20,8 +20,7 @@ const CardItem = ({item, onSelectedItem}) => {
     }
 
     useEffect(() => {
-        // onSelectedItem(item, count)
-        console.log(count)
+        handleAddCart(item, count)
     }, [count])
 
     return ( 

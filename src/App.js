@@ -5,34 +5,33 @@ import Shop from "./screens/Shop/Shop";
 import data from "../src/shared/data"
 
 const App = () => {
-  const [teaQuantity, setTeaQuantity] = useState(0);
-  const [berryQuantity, setBerryQuantity] = useState(0);
-  const [coffeeQuantity, setCoffeeQuantity] = useState(0);
+  const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  const handleSelectItem = (item, value) => {
-    if(item.id === data.id[0]) {
-      setTeaQuantity(value)
-    } else if(item.id === data.id[1]) {
-      setBerryQuantity(value)
-    } else if(item.id === data.id[2]) {
-      setCoffeeQuantity(value)
-    }
+  const handleAddCart = (item, count) => {
+
+    console.log(item)
+    console.log(count)
+    console.log(cart)
+
+    const indexExistCart = cart.findIndex(i => i.item.id === item.id)
+
+    if (indexExistCart > -1) {
+      const newCount = count;
+      const newCountObjectItem = {item: item, count: newCount};
+      cart.splice(indexExistCart, 1, newCountObjectItem);
+      return newCount;
+    } 
+    else {
+      const newObjectItem = {item:item, count:count}
+      cart.push(newObjectItem)
+    } 
   }
-  
-  console.log(teaQuantity)
-  console.log(berryQuantity)
-  console.log(coffeeQuantity)
 
   return (
     <Switch>
-      {/* <Route exact path="/">
-        <Product data={data} onSelectedItem={handleSelectItem} />
-      </Route>
-      <Route exact path="/shop">
-        <Shop teaQuantity={teaQuantity} berryQuantity={berryQuantity} coffeeQuantity={coffeeQuantity}/>
-      </Route> */}
-      <Route exact path="/" component={() => <Product items={data} onSelectedItem={handleSelectItem} />} />
-      <Route exact path="/shop" component={() => <Shop teaQuantity={teaQuantity} berryQuantity={berryQuantity} coffeeQuantity={coffeeQuantity} />}/>
+      <Route exact path="/" component={() => <Product items={data} handleAddCart={handleAddCart} />} />
+      <Route exact path="/shop" component={() => <Shop cart={cart} totalPrice={totalPrice} />}/>
     </Switch>
   );
 }
