@@ -4,8 +4,7 @@ import React from "react"
 const CartLine = ({item}) => {
     return(
         <div>
-            hola
-            {item.item.count}
+            {item.count}
         </div>
     )
 }

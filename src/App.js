@@ -9,19 +9,19 @@ const App = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const handleAddCart = (item, count) => {
+  const handleAddCart = (id, name, price, count) => {
 
     console.log(cart)
 
-    const indexExistCart = cart.findIndex(i => i.item.id === item.id)
+    const indexExistCart = cart.findIndex(i => i.id === id)
 
     if (indexExistCart > -1) {
       const newCount = count;
-      const newCountObjectItem = {item: item, count: newCount};
+      const newCountObjectItem = {id: id, name: name, price: price, count: newCount};
       cart.splice(indexExistCart, 1, newCountObjectItem);
     } 
     else {
-      const newObjectItem = {item:item, count:count}
+      const newObjectItem = {id: id, name: name, price: price, count: count}
       cart.push(newObjectItem)
     }
 
@@ -30,25 +30,19 @@ const App = () => {
     cart.forEach(item => {sumCart += item.count});
     // cart.forEach(item => console.log(item.count));
     console.log(sumCart);
+    // setTotalItems(sumCart)
   }
 
-  // useEffect(() => {
-  //   // handleTotalItems()
-  //   console.log("effect happening")
-  // }, [cart])
-
-
-  // const handleTotalItems = () => {
-  //   let sumCart = 0;
-  //   cart.forEach(item => {sumCart += item.count});
-  //   console.log(sumCart);
-  //   setTotalItems(sumCart)
-  // }
-
+  console.log(cart);
+  
   return (
     <Switch>
-      <Route exact path="/" component={() => <Product items={data} handleAddCart={handleAddCart} />} />
-      <Route exact path="/shop" component={() => <Shop cart={cart} />}/>
+      <Route exact path="/">
+          <Product items={data} handleAddCart={handleAddCart} />
+      </Route>  
+      <Route exact path="/shop">
+          <Shop cart={cart} />
+      </Route> 
     </Switch>
   );
 }

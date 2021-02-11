@@ -6,11 +6,11 @@ import StyledShop from "./styles"
 const Shop = ({cart}) => {
 
     const cartLine = cart.map((item) => (
-        <CartLine item={item} key={item.item.id} />
+        <CartLine item={item} key={item.id} />
     )
 )
     return (
-        <Body cart={cart} >
+        <Body >
             <StyledShop>
                 {cartLine}
                 {cart}

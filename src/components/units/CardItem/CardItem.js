@@ -20,7 +20,7 @@ const CardItem = ({item, handleAddCart}) => {
     }
 
     useEffect(() => {
-        handleAddCart(item, count)
+        handleAddCart(item.id, item.name, item.price, count)
     }, [count])
 
     return ( 
