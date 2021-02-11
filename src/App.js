@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Route, Switch } from "react-router-dom";
 import Product from "./screens/Product/Product";
 import Shop from "./screens/Shop/Shop";
@@ -31,6 +31,19 @@ const App = () => {
     // cart.forEach(item => console.log(item.count));
     console.log(sumCart);
   }
+
+  // useEffect(() => {
+  //   // handleTotalItems()
+  //   console.log("effect happening")
+  // }, [cart])
+
+
+  // const handleTotalItems = () => {
+  //   let sumCart = 0;
+  //   cart.forEach(item => {sumCart += item.count});
+  //   console.log(sumCart);
+  //   setTotalItems(sumCart)
+  // }
 
   return (
     <Switch>
