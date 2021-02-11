@@ -6,12 +6,11 @@ import data from "../src/shared/data"
 
 const App = () => {
   const [cart, setCart] = useState([]);
+  const [totalItems, setTotalItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
   const handleAddCart = (item, count) => {
 
-    console.log(item)
-    console.log(count)
     console.log(cart)
 
     const indexExistCart = cart.findIndex(i => i.item.id === item.id)
@@ -20,18 +19,23 @@ const App = () => {
       const newCount = count;
       const newCountObjectItem = {item: item, count: newCount};
       cart.splice(indexExistCart, 1, newCountObjectItem);
-      return newCount;
     } 
     else {
       const newObjectItem = {item:item, count:count}
       cart.push(newObjectItem)
-    } 
+    }
+
+    // TOTAL ITEMS CART
+    let sumCart = 0;
+    cart.forEach(item => {sumCart += item.count});
+    // cart.forEach(item => console.log(item.count));
+    console.log(sumCart);
   }
 
   return (
     <Switch>
       <Route exact path="/" component={() => <Product items={data} handleAddCart={handleAddCart} />} />
-      <Route exact path="/shop" component={() => <Shop cart={cart} totalPrice={totalPrice} />}/>
+      <Route exact path="/shop" component={() => <Shop />}/>
     </Switch>
   );
 }

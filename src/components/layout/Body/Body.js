@@ -3,10 +3,10 @@ import Footer from "../Footer/Footer"
 import Header from "../Header/Header"
 import { StyledBody, Children } from "./styles"
 
-const Body = ({children}) => {
+const Body = ({children, cart}) => {
     return (
         <StyledBody>
-            <Header />
+            <Header cart={cart} />
             <Children>{children}</Children>
             <Footer />
         </StyledBody>

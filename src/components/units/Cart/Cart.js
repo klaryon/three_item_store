@@ -1,9 +1,9 @@
 import React from "react"
-import StyledCart from "./styles"
+import { StyledCart, StyledCartNumber } from "./styles"
 
-const Cart = () => {
+const Cart = ({cart}) => {
     return(
-        <StyledCart>🛒</StyledCart>
+        <StyledCart>🛒<StyledCartNumber>({cart})</StyledCartNumber></StyledCart>
     )
 }
 
