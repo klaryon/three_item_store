@@ -1,9 +1,9 @@
 import React from "react"
 import { StyledCart, StyledCartNumber } from "./styles"
 
-const Cart = ({cart}) => {
+const Cart = ({totalItems}) => {
     return(
-        <StyledCart>🛒<StyledCartNumber>({cart})</StyledCartNumber></StyledCart>
+        <StyledCart>🛒<StyledCartNumber>({totalItems})</StyledCartNumber></StyledCart>
     )
 }
 

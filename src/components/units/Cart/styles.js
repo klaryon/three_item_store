@@ -9,7 +9,7 @@ export const StyledCart = styled.div`
 export const StyledCartNumber = styled.span`
     display: inline-block;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
 `
 
 // export default StyledCart;

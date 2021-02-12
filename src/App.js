@@ -28,20 +28,18 @@ const App = () => {
     // TOTAL ITEMS CART
     let sumCart = 0;
     cart.forEach(item => {sumCart += item.count});
-    // cart.forEach(item => console.log(item.count));
-    console.log(sumCart);
-    // setTotalItems(sumCart)
+    setTotalItems(sumCart)
   }
 
-  console.log(cart);
-  
+  console.log(totalItems);
+
   return (
     <Switch>
       <Route exact path="/">
-          <Product items={data} handleAddCart={handleAddCart} />
+          <Product items={data} handleAddCart={handleAddCart} totalItems={totalItems} />
       </Route>  
       <Route exact path="/shop">
-          <Shop cart={cart} />
+          <Shop />
       </Route> 
     </Switch>
   );

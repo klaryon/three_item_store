@@ -34,6 +34,6 @@ export const Button = styled.button`
     }
 
     &:hover {
-        background-color: rgba(${Colors.leafRgb},0.1);
+        background-color: rgba(${Colors.beigeRgb},0.7);
     }
 `;

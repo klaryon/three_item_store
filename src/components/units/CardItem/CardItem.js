@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { StyledCartItem, StyledCardBody, Name, Price, SmallParagraph, StyledQuantitySelector } from "./styles"
+import { StyledCartItem, StyledCardBody, Name, Price, SmallParagraph, StyledQuantitySelector, StyledButton, Button } from "./styles"
 import QuantitySelector from "../QuantitySelector/QuantitySelector"
 
 const CardItem = ({item, handleAddCart}) => {
@@ -19,9 +19,10 @@ const CardItem = ({item, handleAddCart}) => {
         setCount(parseInt(e.target.value))
     }
 
-    useEffect(() => {
+    const handleClick = (e) => {
+        e.preventDefault();
         handleAddCart(item.id, item.name, item.price, count)
-    }, [count])
+    }
 
     return ( 
         <StyledCartItem>
@@ -34,6 +35,9 @@ const CardItem = ({item, handleAddCart}) => {
             <StyledQuantitySelector>
                 <QuantitySelector count={count} handleChange={(e) => handleChange(e)} increment={increment} decrement={decrement}/>
             </StyledQuantitySelector>
+            <StyledButton>
+                <Button onClick={handleClick}>Add to Cart</Button>
+            </StyledButton>
         </StyledCartItem>
     )
 }
