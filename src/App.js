@@ -39,7 +39,7 @@ const App = () => {
           <Product items={data} handleAddCart={handleAddCart} totalItems={totalItems} />
       </Route>  
       <Route exact path="/shop">
-          <Shop cart={cart} />
+          <Shop cart={cart} totalItems={totalItems}/>
       </Route> 
     </Switch>
   );

@@ -10,7 +10,7 @@ const Header = ({totalItems}) => {
                 <Logo>🍵🍓☕ 3 item store</Logo>
                 <StyledLink>
                     <Link to="/">Products</Link>
-                    <Link to="/shop">Shop<Cart totalItems={totalItems}/></Link>
+                    <Link to="/shop">Cart<Cart totalItems={totalItems}/></Link>
                 </StyledLink>
             </StyledHeader>
             <StyledParagraph>
