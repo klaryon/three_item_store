@@ -8,7 +8,7 @@ const data = [
         name: "Green Tea",
         image: greentea,
         price: 3.11,
-        discount: 3.11,
+        discount: 0,
         description: "Buy one get one free!"
     },
     {

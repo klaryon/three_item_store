@@ -1,5 +1,5 @@
 import React, { useState} from "react"
-import { StyledCartItem, StyledCardBody, Name, Price, SmallParagraph, StyledQuantitySelector, StyledButton, Button } from "./styles"
+import { StyledCartItem, StyledCardBody, Name, Price, SmallParagraph, StyledQuantitySelector, StyledButton, Button, Unit } from "./styles"
 import QuantitySelector from "../QuantitySelector/QuantitySelector"
 
 const CardItem = ({item, handleAddCart}) => {
@@ -30,7 +30,7 @@ const CardItem = ({item, handleAddCart}) => {
             <img src={item.image} alt={item.name}/>
             <StyledCardBody>
                 <Name>{item.name}</Name>
-                <Price>€ {item.price}</Price>
+                <Price>€ {item.price} <Unit>per unit</Unit></Price>
                 <SmallParagraph>{item.description}</SmallParagraph>
             </StyledCardBody>
             <StyledQuantitySelector>

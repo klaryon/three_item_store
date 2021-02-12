@@ -7,11 +7,11 @@ import data from "../src/shared/data"
 const App = () => {
   const [cart, setCart] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [originalPrice, setOriginalPrice] = useState(0);
 
   const handleAddCart = (id, name, price, count) => {
 
-    console.log(cart)
+    // console.log(cart)
 
     const indexExistCart = cart.findIndex(i => i.id === id)
 
@@ -33,11 +33,12 @@ const App = () => {
     // TOTAL PRICE CART
     let sumPrice = 0;
     cart.forEach(item => {sumPrice += item.price * item.count});
-    setTotalPrice(sumPrice)
+    setOriginalPrice(sumPrice)
   }
 
+  console.log(cart);
   console.log(totalItems);
-  console.log(totalPrice);
+  console.log(originalPrice);
 
   return (
     <Switch>
@@ -45,7 +46,7 @@ const App = () => {
           <Product items={data} handleAddCart={handleAddCart} totalItems={totalItems} />
       </Route>  
       <Route exact path="/shop">
-          <Shop cart={cart} totalItems={totalItems} totalPrice={totalPrice}/>
+          <Shop cart={cart} totalItems={totalItems} originalPrice={originalPrice}/>
       </Route> 
     </Switch>
   );
