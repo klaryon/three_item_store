@@ -5,6 +5,9 @@ const CartLine = ({item}) => {
     return(
         <div>
             {item.count}
+            {item.id}
+            {item.name}
+            {item.price}
         </div>
     )
 }
