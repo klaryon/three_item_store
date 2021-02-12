@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { Route, Switch } from "react-router-dom";
 import Product from "./screens/Product/Product";
 import Shop from "./screens/Shop/Shop";
@@ -29,9 +29,15 @@ const App = () => {
     let sumCart = 0;
     cart.forEach(item => {sumCart += item.count});
     setTotalItems(sumCart)
+
+    // TOTAL PRICE CART
+    let sumPrice = 0;
+    cart.forEach(item => {sumPrice += item.price * item.count});
+    setTotalPrice(sumPrice)
   }
 
   console.log(totalItems);
+  console.log(totalPrice);
 
   return (
     <Switch>
@@ -39,7 +45,7 @@ const App = () => {
           <Product items={data} handleAddCart={handleAddCart} totalItems={totalItems} />
       </Route>  
       <Route exact path="/shop">
-          <Shop cart={cart} totalItems={totalItems}/>
+          <Shop cart={cart} totalItems={totalItems} totalPrice={totalPrice}/>
       </Route> 
     </Switch>
   );
