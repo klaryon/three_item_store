@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState} from "react"
 import { StyledCartItem, StyledCardBody, Name, Price, SmallParagraph, StyledQuantitySelector, StyledButton, Button } from "./styles"
 import QuantitySelector from "../QuantitySelector/QuantitySelector"
 
@@ -22,6 +22,7 @@ const CardItem = ({item, handleAddCart}) => {
     const handleClick = (e) => {
         e.preventDefault();
         handleAddCart(item.id, item.name, item.price, count)
+        localStorage.setItem(item.id, count)
     }
 
     return ( 
