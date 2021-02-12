@@ -5,7 +5,7 @@ export const StyledCartItem = styled.div`
     display:flex;
     flex-direction: column;
     background-color: ${Colors.white};
-    height: 19rem;
+    height: 21.5rem;
     width: 14rem;
     margin-left: 1.7rem;
     margin-right: 1.7rem;
@@ -40,4 +40,28 @@ export const StyledQuantitySelector = styled.small`
     display:flex;
     justify-content:center;
     margin-top: 0.7rem;
+`;
+export const StyledButton = styled.small`
+    display:flex;
+    justify-content:center;
+`;
+export const Button = styled.button`
+    background-color: rgba(${Colors.leafRgb},0.1);
+    color:${Colors.leaf};
+    font-weight: bold;
+    margin-top: 0.4rem;
+    width: 10rem;
+    border: none;
+    border-radius: 0.5rem;
+    height: 2rem;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0px 0px 2px ${Colors.leaf};
+    }
+
+    &:hover {
+        background-color: rgba(${Colors.leafRgb},0.2);
+        color:${Colors.leaf};
+    }
 `;

@@ -1,38 +1,46 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Route, Switch } from "react-router-dom";
 import Product from "./screens/Product/Product";
 import Shop from "./screens/Shop/Shop";
 import data from "../src/shared/data"
 
 const App = () => {
-  const [teaQuantity, setTeaQuantity] = useState(0);
-  const [berryQuantity, setBerryQuantity] = useState(0);
-  const [coffeeQuantity, setCoffeeQuantity] = useState(0);
+  const [cart, setCart] = useState([]);
+  const [totalItems, setTotalItems] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  const handleSelectItem = (item, value) => {
-    if(item.id === data.id[0]) {
-      setTeaQuantity(value)
-    } else if(item.id === data.id[1]) {
-      setBerryQuantity(value)
-    } else if(item.id === data.id[2]) {
-      setCoffeeQuantity(value)
+  const handleAddCart = (id, name, price, count) => {
+
+    console.log(cart)
+
+    const indexExistCart = cart.findIndex(i => i.id === id)
+
+    if (indexExistCart > -1) {
+      const newCount = count;
+      const newCountObjectItem = {id: id, name: name, price: price, count: newCount};
+      cart.splice(indexExistCart, 1, newCountObjectItem);
+    } 
+    else {
+      const newObjectItem = {id: id, name: name, price: price, count: count}
+      cart.push(newObjectItem)
     }
+
+    // TOTAL ITEMS CART
+    let sumCart = 0;
+    cart.forEach(item => {sumCart += item.count});
+    setTotalItems(sumCart)
   }
-  
-  console.log(teaQuantity)
-  console.log(berryQuantity)
-  console.log(coffeeQuantity)
+
+  console.log(totalItems);
 
   return (
     <Switch>
-      {/* <Route exact path="/">
-        <Product data={data} onSelectedItem={handleSelectItem} />
-      </Route>
+      <Route exact path="/">
+          <Product items={data} handleAddCart={handleAddCart} totalItems={totalItems} />
+      </Route>  
       <Route exact path="/shop">
-        <Shop teaQuantity={teaQuantity} berryQuantity={berryQuantity} coffeeQuantity={coffeeQuantity}/>
-      </Route> */}
-      <Route exact path="/" component={() => <Product items={data} onSelectedItem={handleSelectItem} />} />
-      <Route exact path="/shop" component={() => <Shop teaQuantity={teaQuantity} berryQuantity={berryQuantity} coffeeQuantity={coffeeQuantity} />}/>
+          <Shop cart={cart} totalItems={totalItems}/>
+      </Route> 
     </Switch>
   );
 }
