@@ -1,14 +1,23 @@
 import React from "react"
-// import { } from "./styles"
+import {StyledCartLine, StyledName, StyledInfoItem, InfoSmall, InfoSmall2, StyledQuantity, StyledDiscounts} from "./styles"
+import formatterNumber from "../../../helpers/utils"
 
 const CartLine = ({item}) => {
     return(
-        <div>
-            {item.count}
-            {item.id}
-            {item.name}
-            {item.price}
-        </div>
+        <StyledCartLine>
+            <img src={item.image} alt={item.name}/>
+            <StyledInfoItem>
+                <StyledName>
+                    {item.name}
+                </StyledName>
+                <InfoSmall>id: {item.id}</InfoSmall>
+                <InfoSmall2>Price: {formatterNumber(item.price)}</InfoSmall2>
+                <StyledDiscounts>discounts: -{formatterNumber(item.discount)}</StyledDiscounts>
+            </StyledInfoItem>
+            <StyledQuantity>
+                Qty:{item.count}
+            </StyledQuantity>
+        </StyledCartLine>
     )
 }
 

@@ -8,7 +8,7 @@ const data = [
         name: "Green Tea",
         image: greentea,
         price: 3.11,
-        discount: 3.11,
+        unitdiscount: 3.11,
         description: "Buy one get one free!"
     },
     {
@@ -16,7 +16,7 @@ const data = [
         name: "Strawberries",
         image: strawberries,
         price: 5.00,
-        discount: 0.50,
+        unitdiscount: 0.50,
         description: "Buy 3 at original price, then get €0.50 discount per unit"
     },
     {
@@ -24,7 +24,7 @@ const data = [
         name: "Coffee",
         image: coffee,
         price: 11.23,
-        discount: 3.74,
+        unitdiscount: 3.74,
         description: "Buy 3, and all your items get €3.74 discount per unit"
     },
 ];

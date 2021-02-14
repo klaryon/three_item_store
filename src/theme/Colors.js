@@ -4,7 +4,8 @@ const Colors = {
     beige: "#F5F5F5",
     beigeRgb: "245,245,245",
     leaf: "#00916e",
-    leafRgb: "0,145,110"
+    leafRgb: "0,145,110",
+    salmon: "#e63946"
 };
 
 export default Colors;

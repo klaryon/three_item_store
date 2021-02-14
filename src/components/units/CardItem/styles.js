@@ -30,6 +30,7 @@ export const Name = styled.p`
 export const Price = styled.p`
     font-weight: bold;
     color: ${Colors.leaf};
+    padding-bottom: 0.15rem;
 `;
 export const SmallParagraph = styled.small`
     font-style: italic;
@@ -64,4 +65,8 @@ export const Button = styled.button`
         background-color: rgba(${Colors.leafRgb},0.2);
         color:${Colors.leaf};
     }
+`;
+export const Unit = styled.small`
+    font-weight: normal;
+    font-style: italic;
 `;
