@@ -4,9 +4,9 @@ import { StyledProduct } from "./styles"
 import CardItem from "../../components/units/CardItem/CardItem"
 // import data from "../../shared/data"
 
-const Product = ({items, handleAddCart, totalItems, handleDiscount}) => {
+const Product = ({items, handleAddCart, totalItems}) => {
     const cardItem = items.map((item) => (
-            <CardItem item={item} key={item.id} handleAddCart={handleAddCart} handleDiscount={handleDiscount}/>
+            <CardItem item={item} key={item.id} handleAddCart={handleAddCart}/>
         )
     )
 
@@ -15,7 +15,6 @@ const Product = ({items, handleAddCart, totalItems, handleDiscount}) => {
             <StyledProduct>
                 {cardItem}
             </StyledProduct>
-            <button onClick={handleDiscount}>Apply Discounts</button>
         </Body>
     )
 }

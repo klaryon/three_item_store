@@ -15,14 +15,60 @@ const App = () => {
     // console.log(cart)
 
     const indexExistCart = cart.findIndex(i => i.id === id)
+    const greenTeaId = "GR1"
+    const strawberryId = "SR1";
+    const coffeeId = "CF1";
 
-    if (indexExistCart > -1) {
-      const newCount = count;
-      const newCountObjectItem = {id: id, name: name, price: price, count: newCount};
+    //REPLACE EXISTING ITEM
+    if (indexExistCart > -1 && id === greenTeaId) {
+      const discount = 0;
+      const newCountObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
+      cart.splice(indexExistCart, 1, newCountObjectItem);
+    }
+    if (indexExistCart > -1 && id === strawberryId && count < 3) {
+      const discount = 0;
+      const newCountObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
+      cart.splice(indexExistCart, 1, newCountObjectItem);
+    }
+    if (indexExistCart > -1 && id === strawberryId && count > 3) {
+      const discount = (count - 3) * 0.5;
+      const newCountObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
       cart.splice(indexExistCart, 1, newCountObjectItem);
     } 
-    else {
-      const newObjectItem = {id: id, name: name, price: price, count: count}
+    if (indexExistCart > -1 && id === coffeeId && count < 3) {
+      const discount = 0;
+      const newCountObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
+      cart.splice(indexExistCart, 1, newCountObjectItem);
+    }
+    if (indexExistCart > -1 && id === coffeeId && count >= 3) {
+      const discount = count * 3.74;
+      const newCountObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
+      cart.splice(indexExistCart, 1, newCountObjectItem);
+    } 
+    //PUSH NEW ITEM
+    if (indexExistCart === -1 && id === greenTeaId) {
+      const discount = 0;
+      const newObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
+      cart.push(newObjectItem)
+    }
+    if (indexExistCart === -1 && id === strawberryId && count <= 3) {
+      const discount = 0;
+      const newObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
+      cart.push(newObjectItem)
+    }
+    if (indexExistCart === -1 && id === strawberryId && count > 3) {
+      const discount = (count - 3) * 0.5;
+      const newObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
+      cart.push(newObjectItem)
+    }
+    if (indexExistCart === -1 && id === coffeeId && count < 3) {
+      const discount = 0;
+      const newObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
+      cart.push(newObjectItem)
+    }
+    if (indexExistCart === -1 && id === coffeeId && count >= 3) {
+      const discount = count * 3.74;
+      const newObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
       cart.push(newObjectItem)
     }
 
@@ -34,42 +80,15 @@ const App = () => {
     // TOTAL ORIGINAL PRICE
     let sumOriginalPrice = 0;
     cart.forEach(item => {sumOriginalPrice += item.price * item.count});
-    setOriginalPrice(sumOriginalPrice)  
+    setOriginalPrice(sumOriginalPrice)
+
+    // TOTAL DISCOUNT
+    let totalDiscount = 0;
+    cart.forEach(item => {totalDiscount += item.discount});
+    setDiscount(totalDiscount)
   }
 
-  // TOTAL DISCOUNT
-  const handleDiscount = () => {
-    const strawberryExist = cart.some(i => i.id === "SR1")
-    const coffeeExist = cart.some(i => i.id === "CF1")
-    console.log(strawberryExist)
-    console.log(coffeeExist)
-
-    if (strawberryExist) {
-      const strawberry = cart.find(i => i.id === "SR1");
-      if (strawberry.count > 3) {
-      const discount = (strawberry.count - 3) * 0.5;
-      setDiscount(prevCount => prevCount + discount);
-      } else {
-        console.log("strawberry no discount")
-      }
-    } else {
-      console.log("strawberry not found for discount")
-    }
-
-    if(coffeeExist) {
-      const coffee = cart.find(i => i.id === "CF1");
-      if (coffee.count >= 3 ) {
-        const discount = coffee.count * 3.74;
-        setDiscount(prevCount => prevCount + discount);
-      } else {
-        console.log("coffee no discount")
-      }
-    } else {
-      console.log("coffee not found for discount")
-    }
-  }
-
-  // console.log(cart);
+  console.log(cart);
   // console.log(totalItems);
   // console.log(originalPrice);
   console.log(discount);
@@ -77,7 +96,7 @@ const App = () => {
   return (
     <Switch>
       <Route exact path="/">
-          <Product items={data} handleAddCart={handleAddCart} totalItems={totalItems} handleDiscount={handleDiscount}/>
+          <Product items={data} handleAddCart={handleAddCart} totalItems={totalItems}/>
       </Route>  
       <Route exact path="/shop">
           <Shop cart={cart} totalItems={totalItems} originalPrice={originalPrice} discount={discount}/>
