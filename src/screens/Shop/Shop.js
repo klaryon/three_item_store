@@ -1,7 +1,7 @@
 import React from "react";
 import Body from "../../components/layout/Body/Body";
 import CartLine from "../../components/units/CartLine/CartLine"
-import {StyledShop, StyledCartLine, Heading, StyledCartItems, StyledPrice, OriginalPrice, Discounts, TotalPrice} from "./styles"
+import {StyledShop, StyledCartLine, Heading, StyledCartItems, StyledPrice, StyledPriceItems, OriginalPrice, Discounts, TotalPrice, StyledCheckout, Checkout, StyledClear, Title} from "./styles"
 import formatterNumber from "../../helpers/utils"
 
 const Shop = ({cart, totalItems, originalPrice, discount, totalPrice}) => {
@@ -21,9 +21,18 @@ const Shop = ({cart, totalItems, originalPrice, discount, totalPrice}) => {
                     </StyledCartLine>
                 </StyledCartItems>
                 <StyledPrice>
-                    <OriginalPrice>Total Original Price: {formatterNumber(originalPrice.toFixed(2))}</OriginalPrice>
-                    <Discounts>Discounts: {formatterNumber(discount.toFixed(2))}</Discounts>
-                    <TotalPrice>Total Price: {formatterNumber(totalPrice.toFixed(2))}</TotalPrice>
+                    <StyledPriceItems>
+                        <Title>Original total price:</Title>
+                        <OriginalPrice>{formatterNumber(originalPrice.toFixed(2))}</OriginalPrice>
+                        <Title>Discounts:</Title>
+                        <Discounts>-{formatterNumber(discount.toFixed(2))}</Discounts>
+                        <Title>Total Price:</Title>
+                        <TotalPrice>{formatterNumber(totalPrice.toFixed(2))}</TotalPrice>
+                        <StyledCheckout>
+                            <Checkout>Checkout</Checkout>
+                            <StyledClear>clear</StyledClear>
+                        </StyledCheckout>
+                    </StyledPriceItems>
                 </StyledPrice>
             </StyledShop>
         </Body>
