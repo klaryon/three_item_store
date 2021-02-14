@@ -3,14 +3,14 @@ import { Link } from "react-router-dom"
 import { StyledHeader, StyledLink, StyledParagraph, Logo }from "./styles"
 import Cart from "../../units/Cart/Cart"
 
-const Header = ({totalItems}) => {
+const Header = ({totalItems, handleTotalPrice}) => {
     return (
         <>
             <StyledHeader>
                 <Logo>🍵🍓☕ 3 item store</Logo>
                 <StyledLink>
                     <Link to="/">Products</Link>
-                    <Link to="/shop">Cart<Cart totalItems={totalItems}/></Link>
+                    <Link to="/shop" handleTotalPrice={handleTotalPrice}>Cart<Cart totalItems={totalItems}/></Link>
                 </StyledLink>
             </StyledHeader>
             <StyledParagraph>

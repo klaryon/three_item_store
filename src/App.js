@@ -9,10 +9,9 @@ const App = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [originalPrice, setOriginalPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const handleAddCart = (id, name, price, count) => {
-
-    // console.log(cart)
 
     const indexExistCart = cart.findIndex(i => i.id === id)
     const greenTeaId = "GR1"
@@ -21,8 +20,9 @@ const App = () => {
 
     //REPLACE EXISTING ITEM
     if (indexExistCart > -1 && id === greenTeaId) {
+      const doubleCount = count * 2;
       const discount = 0;
-      const newCountObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
+      const newCountObjectItem = {id: id, name: name, price: price, count: count, doubleCount: doubleCount, discount: discount};
       cart.splice(indexExistCart, 1, newCountObjectItem);
     }
     if (indexExistCart > -1 && id === strawberryId && count < 3) {
@@ -47,8 +47,9 @@ const App = () => {
     } 
     //PUSH NEW ITEM
     if (indexExistCart === -1 && id === greenTeaId) {
+      const doubleCount = count * 2;
       const discount = 0;
-      const newObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
+      const newObjectItem = {id: id, name: name, price: price, count: count, doubleCount: doubleCount, discount: discount};
       cart.push(newObjectItem)
     }
     if (indexExistCart === -1 && id === strawberryId && count <= 3) {
@@ -86,12 +87,18 @@ const App = () => {
     let totalDiscount = 0;
     cart.forEach(item => {totalDiscount += item.discount});
     setDiscount(totalDiscount)
+
+    // TOTAL PRICE
+    let totalPrice = 0;
+    cart.forEach(item => {totalPrice += (item.price * item.count) - item.discount});
+    setTotalPrice(totalPrice) 
   }
 
   console.log(cart);
   // console.log(totalItems);
-  // console.log(originalPrice);
+  console.log(originalPrice);
   console.log(discount);
+  console.log(totalPrice);
 
   return (
     <Switch>
@@ -99,7 +106,7 @@ const App = () => {
           <Product items={data} handleAddCart={handleAddCart} totalItems={totalItems}/>
       </Route>  
       <Route exact path="/shop">
-          <Shop cart={cart} totalItems={totalItems} originalPrice={originalPrice} discount={discount}/>
+          <Shop cart={cart} totalItems={totalItems} originalPrice={originalPrice} discount={discount} totalPrice={totalPrice}/>
       </Route> 
     </Switch>
   );
