@@ -11,7 +11,7 @@ const App = () => {
   const [discount, setDiscount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const handleAddCart = (id, name, price, count) => {
+  const handleAddCart = (id, name, price, unitdiscount, count) => {
 
     const indexExistCart = cart.findIndex(i => i.id === id)
     const greenTeaId = "GR1"
@@ -22,7 +22,7 @@ const App = () => {
     if (indexExistCart > -1 && id === greenTeaId) {
       const doubleCount = count * 2;
       const discount = 0;
-      const newCountObjectItem = {id: id, name: name, price: price, count: count, doubleCount: doubleCount, discount: discount};
+      const newCountObjectItem = {id: id, name: name, price: price, count: count, discount: discount, doubleCount: doubleCount};
       cart.splice(indexExistCart, 1, newCountObjectItem);
     }
     if (indexExistCart > -1 && id === strawberryId && count < 3) {
@@ -31,7 +31,7 @@ const App = () => {
       cart.splice(indexExistCart, 1, newCountObjectItem);
     }
     if (indexExistCart > -1 && id === strawberryId && count > 3) {
-      const discount = (count - 3) * 0.5;
+      const discount = (count - 3) * unitdiscount;
       const newCountObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
       cart.splice(indexExistCart, 1, newCountObjectItem);
     } 
@@ -41,7 +41,7 @@ const App = () => {
       cart.splice(indexExistCart, 1, newCountObjectItem);
     }
     if (indexExistCart > -1 && id === coffeeId && count >= 3) {
-      const discount = count * 3.74;
+      const discount = count * unitdiscount;
       const newCountObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
       cart.splice(indexExistCart, 1, newCountObjectItem);
     } 
@@ -49,7 +49,7 @@ const App = () => {
     if (indexExistCart === -1 && id === greenTeaId) {
       const doubleCount = count * 2;
       const discount = 0;
-      const newObjectItem = {id: id, name: name, price: price, count: count, doubleCount: doubleCount, discount: discount};
+      const newObjectItem = {id: id, name: name, price: price, count: count, discount: discount, doubleCount: doubleCount};
       cart.push(newObjectItem)
     }
     if (indexExistCart === -1 && id === strawberryId && count <= 3) {
@@ -58,7 +58,7 @@ const App = () => {
       cart.push(newObjectItem)
     }
     if (indexExistCart === -1 && id === strawberryId && count > 3) {
-      const discount = (count - 3) * 0.5;
+      const discount = (count - 3) * unitdiscount;
       const newObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
       cart.push(newObjectItem)
     }
@@ -68,7 +68,7 @@ const App = () => {
       cart.push(newObjectItem)
     }
     if (indexExistCart === -1 && id === coffeeId && count >= 3) {
-      const discount = count * 3.74;
+      const discount = count * unitdiscount;
       const newObjectItem = {id: id, name: name, price: price, count: count, discount: discount};
       cart.push(newObjectItem)
     }

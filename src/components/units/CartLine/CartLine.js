@@ -1,5 +1,6 @@
 import React from "react"
 // import { } from "./styles"
+import formatterNumber from "../../../helpers/utils"
 
 const CartLine = ({item}) => {
     return(
@@ -7,7 +8,7 @@ const CartLine = ({item}) => {
             {item.count}
             {item.id}
             {item.name}
-            {item.price}
+            {formatterNumber(item.price)}
         </div>
     )
 }

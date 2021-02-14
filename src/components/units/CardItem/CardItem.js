@@ -1,6 +1,7 @@
 import React, { useState} from "react"
 import { StyledCartItem, StyledCardBody, Name, Price, SmallParagraph, StyledQuantitySelector, StyledButton, Button, Unit } from "./styles"
 import QuantitySelector from "../QuantitySelector/QuantitySelector"
+import formatterNumber from "../../../helpers/utils"
 
 const CardItem = ({item, handleAddCart}) => {
 
@@ -21,7 +22,7 @@ const CardItem = ({item, handleAddCart}) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        handleAddCart(item.id, item.name, item.price, count)
+        handleAddCart(item.id, item.name, item.price, item.unitdiscount, count)
         localStorage.setItem(item.id, count)
     }
 
@@ -30,7 +31,7 @@ const CardItem = ({item, handleAddCart}) => {
             <img src={item.image} alt={item.name}/>
             <StyledCardBody>
                 <Name>{item.name}</Name>
-                <Price>€ {item.price} <Unit>per unit</Unit></Price>
+                <Price>{formatterNumber(item.price)} <Unit>per unit</Unit></Price>
                 <SmallParagraph>{item.description}</SmallParagraph>
             </StyledCardBody>
             <StyledQuantitySelector>
