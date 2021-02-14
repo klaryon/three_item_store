@@ -22,7 +22,7 @@ const CardItem = ({item, handleAddCart}) => {
 
     const handleClick = (e) => {
         e.preventDefault();
-        handleAddCart(item.id, item.name, item.price, item.unitdiscount, count)
+        handleAddCart(item.id, item.name, item.price, item.image, item.unitdiscount, count)
         localStorage.setItem(item.id, count)
     }
 

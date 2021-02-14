@@ -6,15 +6,16 @@ export const StyledShop = styled.div`
     justify-content: space-between;
 `;
 export const Heading = styled.h1`
-    background-color: none;
+    margin-top: 0.8rem;;
 `;
 export const StyledCartItems = styled.div`
     display: flex;
     flex-direction: column;
-    width: 20rem;
+    width: 30rem;
 `;
-export const StyledCartLine = styled.div`
-    background-color: none;
+export const StyledCartLines = styled.div`
+    display: flex;
+    flex-direction: column;
 `;
 export const StyledPrice = styled.div`
     display:flex;
@@ -22,8 +23,9 @@ export const StyledPrice = styled.div`
     background-color: ${Colors.white};
     height: 18rem;
     width: 14rem;
-    margin-left: 1.7rem;
+    margin-left: 4rem;
     margin-right: 1.7rem;
+    margin-top: 2rem;
     border: 1px solid ${Colors.black};
     border-radius: 0rem 0rem 2rem 2rem;
     box-shadow: 2rem 2rem ${Colors.black};
@@ -36,6 +38,7 @@ export const StyledPriceItems = styled.div`
 export const Title = styled.small`
     color: ${Colors.black};
     padding-bottom: 0.4rem;
+    letter-spacing: 0.05rem;
 `;
 export const OriginalPrice = styled.div`
     display:flex;

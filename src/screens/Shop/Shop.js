@@ -1,7 +1,7 @@
 import React from "react";
 import Body from "../../components/layout/Body/Body";
 import CartLine from "../../components/units/CartLine/CartLine"
-import {StyledShop, StyledCartLine, Heading, StyledCartItems, StyledPrice, StyledPriceItems, OriginalPrice, Discounts, TotalPrice, StyledCheckout, Checkout, StyledClear, Title} from "./styles"
+import {StyledShop, StyledCartLines, Heading, StyledCartItems, StyledPrice, StyledPriceItems, OriginalPrice, Discounts, TotalPrice, StyledCheckout, Checkout, StyledClear, Title} from "./styles"
 import formatterNumber from "../../helpers/utils"
 
 const Shop = ({cart, totalItems, originalPrice, discount, totalPrice}) => {
@@ -16,9 +16,9 @@ const Shop = ({cart, totalItems, originalPrice, discount, totalPrice}) => {
             <StyledShop> 
                 <StyledCartItems>
                     <Heading>Cart</Heading>
-                    <StyledCartLine>
+                    <StyledCartLines>
                         {cartLine}
-                    </StyledCartLine>
+                    </StyledCartLines>
                 </StyledCartItems>
                 <StyledPrice>
                     <StyledPriceItems>
