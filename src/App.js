@@ -22,7 +22,7 @@ const App = () => {
     if (indexExistCart > -1 && id === greenTeaId) {
       const doubleCount = count * 2;
       const discount = 0;
-      const newCountObjectItem = {id: id, name: name, price: price, image:image, count: count, discount: discount, doubleCount: doubleCount};
+      const newCountObjectItem = {id: id, name: name, price: price, image:image, count: doubleCount, discount: discount};
       cart.splice(indexExistCart, 1, newCountObjectItem);
     }
     if (indexExistCart > -1 && id === strawberryId && count < 3) {
@@ -49,7 +49,7 @@ const App = () => {
     if (indexExistCart === -1 && id === greenTeaId) {
       const doubleCount = count * 2;
       const discount = 0;
-      const newObjectItem = {id: id, name: name, price: price, image:image, count: count, discount: discount, doubleCount: doubleCount};
+      const newObjectItem = {id: id, name: name, price: price, image:image, count: doubleCount, discount: discount};
       cart.push(newObjectItem)
     }
     if (indexExistCart === -1 && id === strawberryId && count <= 3) {
