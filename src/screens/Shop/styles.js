@@ -24,6 +24,7 @@ export const StyledCartItems = styled.div`
         height: 20rem;
         align-items: flex-start;
         justify-content: flex-start;
+        margin-right:10rem;
     }
 `;
 export const StyledCartLines = styled.div`
