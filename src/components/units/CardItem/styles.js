@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Colors from "../../../theme/Colors"
+import device from "../../../helpers/responsive"
 
 export const StyledCartItem = styled.div`
     display:flex;
@@ -7,16 +8,21 @@ export const StyledCartItem = styled.div`
     background-color: ${Colors.white};
     height: 21.5rem;
     width: 14rem;
-    margin-left: 1.7rem;
-    margin-right: 1.7rem;
+    margin: 1rem 3rem 3rem 3rem;
     border: 1px solid ${Colors.black};
     border-radius: 0rem 0rem 2rem 2rem;
-    box-shadow: 2rem 2rem ${Colors.black};
+    box-shadow: 1rem 1rem ${Colors.black};
+
+    @media ${device.mobileS} {
+        box-shadow: 2rem 2rem ${Colors.black};
+    }
+
+    @media ${device.laptop} {
+        margin: 0rem 1.7rem 0rem 1.7rem;
+    }
 `;
 export const StyledCardBody = styled.div`
-    margin-left: 1rem;
-    margin-right: 1rem;
-    margin-top: 0.5rem;
+    margin: 0.5rem 1rem 0rem 1rem;
     height:5rem;
 
     & > p {
