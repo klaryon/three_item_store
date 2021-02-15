@@ -21,8 +21,9 @@ export const StyledCartItems = styled.div`
     align-items: center;
 
     @media ${device.laptop} {
+        height: 20rem;
         align-items: flex-start;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
 `;
 export const StyledCartLines = styled.div`
