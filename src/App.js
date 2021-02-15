@@ -95,7 +95,6 @@ const App = () => {
   }
 
   console.log(cart);
-  // console.log(totalItems);
   console.log(originalPrice);
   console.log(discount);
   console.log(totalPrice);

@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom"
-import { StyledHeader, StyledLink, StyledParagraph, Logo }from "./styles"
+import { StyledHeader, StyledLink, StyledParagraph, Logo, ItemLogo, ItemLogoText }from "./styles"
 import Cart from "../../units/Cart/Cart"
 
 const Header = ({totalItems}) => {
     return (
         <>
             <StyledHeader>
-                <Logo>🍵🍓☕ 3 item store</Logo>
+                <Logo>
+                    <ItemLogo>🍵🍓☕</ItemLogo>
+                    <ItemLogoText>3 item store</ItemLogoText>
+                </Logo>
                 <StyledLink>
                     <Link to="/">Products</Link>
                     <Link to="/shop">Cart<Cart totalItems={totalItems}/></Link>

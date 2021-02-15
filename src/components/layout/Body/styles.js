@@ -1,16 +1,20 @@
 import styled from "styled-components"
 import Colors from "../../../theme/Colors"
+import device from "../../../helpers/responsive"
 
 export const StyledBody = styled.div`
-    margin-left: 8rem;
-    margin-right: 8rem;
+    display: flex;
+    flex-direction: column;
 `;
 export const Children = styled.div`
-    display: flex;
-    justify-content: center;
-    margin-left: 8rem;
-    margin-right: 8rem;
-    height: 23rem;
+    max-height: 100%;
+    max-width: 100%;
+    padding-top: 2.5rem;
+    padding-bottom: 4rem;
     background-color: ${Colors.beige};
-    padding: 3rem;
-`
+
+    @media ${device.laptop} {
+        padding-bottom: 4rem;
+        height: 23rem;
+    }
+`;
