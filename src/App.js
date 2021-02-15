@@ -21,7 +21,7 @@ const App = () => {
     //REPLACE EXISTING ITEM
     if (indexExistCart > -1 && id === greenTeaId) {
       const doubleCount = count * 2;
-      const discount = 0;
+      const discount = unitdiscount * count;
       const newCountObjectItem = {id: id, name: name, price: price, image:image, count: doubleCount, discount: discount};
       cart.splice(indexExistCart, 1, newCountObjectItem);
     }
@@ -48,7 +48,7 @@ const App = () => {
     //PUSH NEW ITEM
     if (indexExistCart === -1 && id === greenTeaId) {
       const doubleCount = count * 2;
-      const discount = 0;
+      const discount = unitdiscount * count;
       const newObjectItem = {id: id, name: name, price: price, image:image, count: doubleCount, discount: discount};
       cart.push(newObjectItem)
     }
