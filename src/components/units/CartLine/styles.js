@@ -29,24 +29,33 @@ export const StyledInfoItem = styled.div`
 export const InfoSmall = styled.small`
     height: 5rem;
     margin-top: 0rem;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.03rem;
+
+    @media ${device.laptop} {
+        letter-spacing: 0.1rem;
+    }
 `;
 export const InfoSmall2 = styled.small`
     height: 5rem;
     margin-top: 0rem;
-    letter-spacing: 0.1rem;
-    margin-left: 0.8rem;
+    letter-spacing: 0.03rem;
+    margin-left: 0.5rem;
     
     @media ${device.laptop} {
         margin-left: 1.5rem;
+        letter-spacing: 0.1rem;
     }
 `;
 export const StyledQuantity = styled.div`
     letter-spacing: 0.2rem;
 `;
 export const StyledDiscounts = styled.div`
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.03rem;
     color: ${Colors.salmon};
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+
+    @media ${device.laptop} {
+        letter-spacing: 0.1rem;
+    }
 `;
 

@@ -11,7 +11,7 @@ const CartLine = ({item}) => {
                     {item.name}
                 </StyledName>
                 <InfoSmall>id: {item.id}</InfoSmall>
-                <InfoSmall2>Price: {formatterNumber(item.price)}</InfoSmall2>
+                <InfoSmall2>Price unit: {formatterNumber(item.price)}</InfoSmall2>
                 <StyledDiscounts>discounts: -{formatterNumber(item.discount)}</StyledDiscounts>
             </StyledInfoItem>
             <StyledQuantity>
