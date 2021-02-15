@@ -1,4 +1,4 @@
-import React, { useState} from "react"
+import React, { useEffect, useState} from "react"
 import { StyledCartItem, StyledCardBody, Name, Price, SmallParagraph, StyledQuantitySelector, StyledButton, Button, Unit } from "./styles"
 import QuantitySelector from "../QuantitySelector/QuantitySelector"
 import formatterNumber from "../../../helpers/utils"
@@ -25,6 +25,27 @@ const CardItem = ({item, handleAddCart}) => {
         handleAddCart(item.id, item.name, item.price, item.image, item.unitdiscount, count)
         localStorage.setItem(item.id, count)
     }
+
+    useEffect(() => {
+        if(item.id === "GR1") {
+            const store = localStorage.getItem("GR1")
+            const storeInt = JSON.parse(store)
+            console.log(storeInt);
+            setCount(storeInt)
+        }
+        if(item.id === "SR1") {
+            const store = localStorage.getItem("SR1")
+            const storeInt = JSON.parse(store)
+            console.log(storeInt);
+            setCount(storeInt)
+        }
+        if(item.id === "CF1") {
+            const store = localStorage.getItem("CF1")
+            const storeInt = JSON.parse(store)
+            console.log(storeInt);
+            setCount(storeInt)
+        }
+    }, [])
 
     return ( 
         <StyledCartItem>
