@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import Product from "./screens/Product/Product";
 import Shop from "./screens/Shop/Shop";
-import api from "../src/shared/api";
+import axios from "../src/shared/api";
 // import data from "../src/shared/data";
 
 const App = () => {
-  const [items, setItems] = useState([]);
+  const [data, setData] = useState([]);
   const [cart, setCart] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const [originalPrice, setOriginalPrice] = useState(0);
@@ -14,11 +14,12 @@ const App = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    api.get("/").then((res) => {
-      console.log(res.data);
-      setItems(res.data);
-    });
-  }, []);
+    async function fetchData() {
+      const response = await axios.get("/");
+      setData(response.data);
+    }
+    fetchData();
+  }, ["/"]);
 
   const handleAddCart = (id, name, price, image, unitdiscount, count) => {
     const indexExistCart = cart.findIndex((i) => i.id === id);
@@ -181,7 +182,7 @@ const App = () => {
     <Switch>
       <Route exact path="/">
         <Product
-          items={items}
+          items={data}
           handleAddCart={handleAddCart}
           totalItems={totalItems}
         />
