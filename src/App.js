@@ -12,6 +12,21 @@ const App = () => {
   const [originalPrice, setOriginalPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
+
+  const decrement = () => {
+    if (count > 0) {
+      setCount((prevCount) => prevCount - 1);
+    }
+  };
+
+  const handleChange = (e) => {
+    setCount(parseInt(e.target.value));
+  };
 
   useEffect(() => {
     api.get("/").then((res) => {
@@ -19,6 +34,25 @@ const App = () => {
       setItems(res.data);
     });
   }, []);
+
+  // useEffect(() => {
+  //   if (cart.id === "GR1") {
+  //     const store = localStorage.getItem("GR1");
+  //     const storeInt = JSON.parse(store);
+  //     console.log(storeInt);
+  //     setCount(storeInt);
+  //   } else if (cart.id === "SR1") {
+  //     const store = localStorage.getItem("SR1");
+  //     const storeInt = JSON.parse(store);
+  //     console.log(storeInt);
+  //     setCount(storeInt);
+  //   } else if (cart.id === "CF1") {
+  //     const store = localStorage.getItem("CF1");
+  //     const storeInt = JSON.parse(store);
+  //     console.log(storeInt);
+  //     setCount(storeInt);
+  //   }
+  // }, []);
 
   const handleAddCart = (id, name, price, image, unitdiscount, count) => {
     const indexExistCart = cart.findIndex((i) => i.id === id);
@@ -181,9 +215,13 @@ const App = () => {
     <Switch>
       <Route exact path="/">
         <Product
+          count={count}
           items={items}
           handleAddCart={handleAddCart}
           totalItems={totalItems}
+          handleChange={handleChange}
+          increment={increment}
+          decrement={decrement}
         />
         {/* <Product
           items={data}

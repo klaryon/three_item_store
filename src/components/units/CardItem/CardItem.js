@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   StyledCartItem,
   StyledCardBody,
@@ -13,54 +13,30 @@ import {
 import QuantitySelector from "../QuantitySelector/QuantitySelector";
 import formatterNumber from "../../../helpers/utils";
 
-const CardItem = ({ item, handleAddCart }) => {
-  const [count, setCount] = useState(0);
-
-  const increment = () => {
-    setCount((prevCount) => prevCount + 1);
-  };
-
-  const decrement = () => {
-    if (count > 0) {
-      setCount((prevCount) => prevCount - 1);
-    }
-  };
-
-  const handleChange = (e) => {
-    setCount(parseInt(e.target.value));
-  };
+const CardItem = ({
+  item,
+  count,
+  handleAddCart,
+  handleChange,
+  increment,
+  decrement,
+}) => {
+  const [click, setClick] = useState(false);
+  const newCount = count + 1;
 
   const handleClick = (e) => {
     e.preventDefault();
+    setClick(true);
     handleAddCart(
       item.id,
       item.name,
       item.price,
       item.image,
       item.unitdiscount,
-      count
+      newCount
     );
-    localStorage.setItem(item.id, count);
+    localStorage.setItem(item.id, newCount);
   };
-
-  useEffect(() => {
-    if (item.id === "GR1") {
-      const store = localStorage.getItem("GR1");
-      const storeInt = JSON.parse(store);
-      console.log(storeInt);
-      setCount(storeInt);
-    } else if (item.id === "SR1") {
-      const store = localStorage.getItem("SR1");
-      const storeInt = JSON.parse(store);
-      console.log(storeInt);
-      setCount(storeInt);
-    } else if (item.id === "CF1") {
-      const store = localStorage.getItem("CF1");
-      const storeInt = JSON.parse(store);
-      console.log(storeInt);
-      setCount(storeInt);
-    }
-  }, []);
 
   return (
     <StyledCartItem>
@@ -72,17 +48,21 @@ const CardItem = ({ item, handleAddCart }) => {
         </Price>
         <SmallParagraph>{item.description}</SmallParagraph>
       </StyledCardBody>
-      <StyledQuantitySelector>
-        <QuantitySelector
-          count={count}
-          handleChange={(e) => handleChange(e)}
-          increment={increment}
-          decrement={decrement}
-        />
-      </StyledQuantitySelector>
-      <StyledButton>
-        <Button onClick={handleClick}>Add to Cart</Button>
-      </StyledButton>
+
+      {click ? (
+        <StyledQuantitySelector>
+          <QuantitySelector
+            count={count}
+            handleChange={(e) => handleChange(e)}
+            increment={increment}
+            decrement={decrement}
+          />
+        </StyledQuantitySelector>
+      ) : (
+        <StyledButton>
+          <Button onClick={handleClick}>Add to Cart</Button>
+        </StyledButton>
+      )}
     </StyledCartItem>
   );
 };
