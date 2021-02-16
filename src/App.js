@@ -39,7 +39,7 @@ const App = () => {
         discount: discount,
       };
       cart.splice(indexExistCart, 1, newCountObjectItem);
-    } else if (indexExistCart > -1 && id === strawberryId && count < 3) {
+    } else if (indexExistCart > -1 && id === strawberryId && count <= 3) {
       const discount = 0;
       const newCountObjectItem = {
         id: id,
