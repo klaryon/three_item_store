@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import Product from "./screens/Product/Product";
 import Shop from "./screens/Shop/Shop";
-import data from "../src/shared/data";
+import api from "../src/shared/api";
+// import data from "../src/shared/data";
 
 const App = () => {
+  const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const [originalPrice, setOriginalPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    api.get("/").then((res) => {
+      console.log(res.data);
+      setItems(res.data);
+    });
+  }, []);
 
   const handleAddCart = (id, name, price, image, unitdiscount, count) => {
     const indexExistCart = cart.findIndex((i) => i.id === id);
@@ -180,10 +189,15 @@ const App = () => {
     <Switch>
       <Route exact path="/">
         <Product
-          items={data}
+          items={items}
           handleAddCart={handleAddCart}
           totalItems={totalItems}
         />
+        {/* <Product
+          items={data}
+          handleAddCart={handleAddCart}
+          totalItems={totalItems}
+        /> */}
       </Route>
       <Route exact path="/shop">
         <Shop
