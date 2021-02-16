@@ -15,6 +15,7 @@ import {
   Checkout,
   StyledClear,
   Title,
+  EmptyCart,
 } from "./styles";
 import formatterNumber from "../../helpers/utils";
 
@@ -26,7 +27,11 @@ const Shop = ({ cart, totalItems, originalPrice, discount, totalPrice }) => {
       <StyledShop>
         <StyledCartItems>
           <Heading>Cart</Heading>
-          <StyledCartLines>{cartLine}</StyledCartLines>
+          {totalPrice === 0 ? (
+            <EmptyCart>Your Cart is Empty! 🥺</EmptyCart>
+          ) : (
+            <StyledCartLines>{cartLine}</StyledCartLines>
+          )}
         </StyledCartItems>
         <StyledPrice>
           <StyledPriceItems>

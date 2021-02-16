@@ -119,3 +119,11 @@ export const StyledClear = styled.a`
     color: ${Colors.black};
   }
 `;
+export const EmptyCart = styled.div`
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+
+    @media ${device.laptop} {
+      font-size: 1.4rem;
+  }
+`;
