@@ -3,25 +3,9 @@ import Body from "../../components/layout/Body/Body";
 import { StyledProduct } from "./styles";
 import CardItem from "../../components/units/CardItem/CardItem";
 
-const Product = ({
-  items,
-  count,
-  handleAddCart,
-  totalItems,
-  handleChange,
-  increment,
-  decrement,
-}) => {
+const Product = ({ items, handleAddCart, totalItems }) => {
   const cardItem = items.map((item) => (
-    <CardItem
-      item={item}
-      count={count}
-      key={item.id}
-      handleAddCart={handleAddCart}
-      handleChange={handleChange}
-      increment={increment}
-      decrement={decrement}
-    />
+    <CardItem item={item} key={item.id} handleAddCart={handleAddCart} />
   ));
 
   return (

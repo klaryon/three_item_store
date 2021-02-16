@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyledCartItem,
   StyledCardBody,
@@ -13,30 +13,82 @@ import {
 import QuantitySelector from "../QuantitySelector/QuantitySelector";
 import formatterNumber from "../../../helpers/utils";
 
-const CardItem = ({
-  item,
-  count,
-  handleAddCart,
-  handleChange,
-  increment,
-  decrement,
-}) => {
+const CardItem = ({ item, handleAddCart }) => {
   const [click, setClick] = useState(false);
-  const newCount = count + 1;
+  const [count, setCount] = useState(0);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    setClick(true);
-    handleAddCart(
+  const increment = async () => {
+    setCount((prevCount) => prevCount + 1);
+    await handleAddCart(
       item.id,
       item.name,
       item.price,
       item.image,
       item.unitdiscount,
-      newCount
+      count
     );
-    localStorage.setItem(item.id, newCount);
   };
+
+  const decrement = async () => {
+    if (count > 0) {
+      setCount((prevCount) => prevCount - 1);
+    }
+    await handleAddCart(
+      item.id,
+      item.name,
+      item.price,
+      item.image,
+      item.unitdiscount,
+      count
+    );
+  };
+
+  const handleChange = async (e) => {
+    setCount(parseInt(e.target.value));
+    await handleAddCart(
+      item.id,
+      item.name,
+      item.price,
+      item.image,
+      item.unitdiscount,
+      count
+    );
+  };
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    setClick(true);
+    setCount((prevCount) => prevCount + 1);
+
+    await handleAddCart(
+      item.id,
+      item.name,
+      item.price,
+      item.image,
+      item.unitdiscount,
+      count
+    );
+  };
+
+  localStorage.setItem(item.id, count);
+  // useEffect(() => {
+  //   if (item.id === "GR1") {
+  //     const store = localStorage.getItem("GR1");
+  //     const storeInt = JSON.parse(store);
+  //     console.log(storeInt);
+  //     setCount(storeInt);
+  //   } else if (item.id === "SR1") {
+  //     const store = localStorage.getItem("SR1");
+  //     const storeInt = JSON.parse(store);
+  //     console.log(storeInt);
+  //     setCount(storeInt);
+  //   } else if (item.id === "CF1") {
+  //     const store = localStorage.getItem("CF1");
+  //     const storeInt = JSON.parse(store);
+  //     console.log(storeInt);
+  //     setCount(storeInt);
+  //   }
+  // }, []);
 
   return (
     <StyledCartItem>
