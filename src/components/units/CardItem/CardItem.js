@@ -49,14 +49,12 @@ const CardItem = ({ item, handleAddCart }) => {
       const storeInt = JSON.parse(store);
       console.log(storeInt);
       setCount(storeInt);
-    }
-    if (item.id === "SR1") {
+    } else if (item.id === "SR1") {
       const store = localStorage.getItem("SR1");
       const storeInt = JSON.parse(store);
       console.log(storeInt);
       setCount(storeInt);
-    }
-    if (item.id === "CF1") {
+    } else if (item.id === "CF1") {
       const store = localStorage.getItem("CF1");
       const storeInt = JSON.parse(store);
       console.log(storeInt);
