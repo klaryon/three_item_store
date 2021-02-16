@@ -6,24 +6,17 @@ import axios from "../src/shared/api";
 // import data from "../src/shared/data";
 
 const App = () => {
-  const [items, setItems] = useState([]);
+  const [data, setData] = useState([]);
   const [cart, setCart] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const [originalPrice, setOriginalPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  // useEffect(() => {
-  //   api.get("/").then((res) => {
-  //     // console.log(res.data);
-  //     setItems(res.data);
-  //   });
-  // }, []);
-
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get("/");
-      setItems(response.data);
+      setData(response.data);
     }
     fetchData();
   }, ["/"]);
@@ -189,15 +182,10 @@ const App = () => {
     <Switch>
       <Route exact path="/">
         <Product
-          items={items}
-          handleAddCart={handleAddCart}
-          totalItems={totalItems}
-        />
-        {/* <Product
           items={data}
           handleAddCart={handleAddCart}
           totalItems={totalItems}
-        /> */}
+        />
       </Route>
       <Route exact path="/shop">
         <Shop
