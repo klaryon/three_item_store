@@ -19,20 +19,34 @@ const App = () => {
       setData(response.data);
     }
     fetchData();
-  }, ["/"]);
+  }, []);
 
   const handleAddCart = (item) => {
     const exist = cart.find((x) => x.id === item.id);
     if (exist) {
       setCart(
         cart.map((x) =>
-          x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
+          x.id === item.id ? { ...exist, quantity: exist.quantity + 1 } : x
         )
       );
     } else {
-      setCart([...cart, { ...item, qty: 1 }]);
+      setCart([...cart, { ...item, quantity: 1 }]);
     }
+    
   };
+  const handleRemoveCart = (item) => {
+    const exist = cart.find((x) => x.id === item.id);
+    if (exist.quantity === 1) {
+      setCart(cart.filter((x) => x.id !== item.id)
+      );
+    } else {
+      setCart(
+        cart.map((x) =>
+          x.id === item.id ? { ...exist, quantity: exist.quantity - 1 } : x
+        )
+      );
+    }
+  }
 
   // const handleAddCart = (id, name, price, image, unitdiscount, count) => {
   //   const indexExistCart = cart.findIndex((i) => i.id === id);
@@ -203,6 +217,8 @@ const App = () => {
       <Route exact path="/shop">
         <Shop
           cart={cart}
+          handleAddCart={handleAddCart}
+          handleRemoveCart={handleRemoveCart}
           totalItems={totalItems}
           originalPrice={originalPrice}
           discount={discount}

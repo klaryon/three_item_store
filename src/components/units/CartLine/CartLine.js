@@ -10,7 +10,7 @@ import {
 } from "./styles";
 import formatterNumber from "../../../helpers/utils";
 
-const CartLine = ({ item }) => {
+const CartLine = ({ item, handleAddCart, handleRemoveCart }) => {
   return (
     <StyledCartLine>
       <img src={item.image} alt={item.name} />
@@ -22,7 +22,9 @@ const CartLine = ({ item }) => {
           discounts: -{formatterNumber(item.discount)}
         </StyledDiscounts>
       </StyledInfoItem>
+      <button onClick={() => handleAddCart(item)}>+</button>
       <StyledQuantity>Qty:{item.count}</StyledQuantity>
+      <button onClick={() => handleRemoveCart(item)}>-</button>
     </StyledCartLine>
   );
 };

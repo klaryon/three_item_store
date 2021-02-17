@@ -19,19 +19,28 @@ import {
 } from "./styles";
 import formatterNumber from "../../helpers/utils";
 
-const Shop = ({ cart, totalItems, originalPrice, discount, totalPrice }) => {
-  const cartLine = cart.map((item) => <CartLine item={item} key={item.id} />);
+const Shop = ({
+  cart,
+  totalItems,
+  originalPrice,
+  discount,
+  totalPrice,
+  handleAddCart,
+  handleRemoveCart,
+}) => {
+  const cartLine = cart.map((item) => <CartLine key={item.id} item={item} handleAddCart={handleAddCart}
+  handleRemoveCart={handleRemoveCart} />);
 
   return (
     <Body totalItems={totalItems}>
       <StyledShop>
         <StyledCartItems>
           <Heading>Cart</Heading>
-          {totalPrice === 0 ? (
+          {/* {totalPrice === 0 ? (
             <EmptyCart>Your Cart is Empty! 🥺</EmptyCart>
-          ) : (
+          ) : ( */}
             <StyledCartLines>{cartLine}</StyledCartLines>
-          )}
+          {/* )} */}
         </StyledCartItems>
         <StyledPrice>
           <StyledPriceItems>
