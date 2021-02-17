@@ -5,10 +5,10 @@ import {
   StyledInfoItem,
   InfoSmall,
   InfoSmall2,
-  StyledQuantity,
   StyledDiscounts,
 } from "./styles";
 import formatterNumber from "../../../helpers/utils";
+import QuantitySelector from "../QuantitySelector/QuantitySelector"
 
 const CartLine = ({ item, handleAddCart, handleRemoveCart }) => {
   return (
@@ -22,9 +22,7 @@ const CartLine = ({ item, handleAddCart, handleRemoveCart }) => {
           discounts: -{formatterNumber(item.discount)}
         </StyledDiscounts>
       </StyledInfoItem>
-      <button onClick={() => handleRemoveCart(item)}>-</button>
-      <StyledQuantity>{item.quantity}</StyledQuantity>
-      <button onClick={() => handleAddCart(item)}>+</button>
+      <QuantitySelector item={item} handleAddCart={handleAddCart} handleRemoveCart={handleRemoveCart}/>
     </StyledCartLine>
   );
 };

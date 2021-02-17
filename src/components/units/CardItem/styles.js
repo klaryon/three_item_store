@@ -23,7 +23,7 @@ export const StyledCartItem = styled.div`
 `;
 export const StyledCardBody = styled.div`
   margin: 0.5rem 1rem 0rem 1rem;
-  height: 5rem;
+  height: 6.5rem;
 
   & > p {
     margin: 0rem;
@@ -32,11 +32,12 @@ export const StyledCardBody = styled.div`
 export const Name = styled.p`
   font-weight: bold;
   font-size: 1.2rem;
+  padding-bottom: 0.5rem;
 `;
 export const Price = styled.p`
   font-weight: bold;
   color: ${Colors.leaf};
-  padding-bottom: 0.15rem;
+  padding-bottom: 0.5rem;
 `;
 export const SmallParagraph = styled.small`
   font-style: italic;
@@ -56,11 +57,11 @@ export const Button = styled.button`
   background-color: rgba(${Colors.leafRgb}, 0.1);
   color: ${Colors.leaf};
   font-weight: bold;
-  margin-top: 0.4rem;
+  margin-top: 1rem;
   width: 10rem;
   border: none;
   border-radius: 0.5rem;
-  height: 2rem;
+  height: 2.5rem;
 
   &:focus {
     outline: none;

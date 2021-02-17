@@ -28,16 +28,22 @@ const Shop = ({
   handleAddCart,
   handleRemoveCart,
 }) => {
-  const cartLine = cart.map((item) => <CartLine key={item.id} item={item} handleAddCart={handleAddCart}
-  handleRemoveCart={handleRemoveCart} />);
+  const cartLine = cart.map((item) => (
+    <CartLine
+      key={item.id}
+      item={item}
+      handleAddCart={handleAddCart}
+      handleRemoveCart={handleRemoveCart}
+    />
+  ));
 
   return (
     <Body totalItems={totalItems}>
       <StyledShop>
         <StyledCartItems>
           <Heading>Cart</Heading>
-            {cart.length === 0 && <EmptyCart>Your Cart is Empty! 🥺</EmptyCart>}
-            <StyledCartLines>{cartLine}</StyledCartLines>
+          {cart.length === 0 && <EmptyCart>Your Cart is Empty! 🥺</EmptyCart>}
+          <StyledCartLines>{cartLine}</StyledCartLines>
         </StyledCartItems>
         <StyledPrice>
           <StyledPriceItems>

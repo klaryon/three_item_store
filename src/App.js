@@ -46,10 +46,13 @@ const App = () => {
 
   // TOTAL ITEMS CART
   const totalItems = cart.reduce((a, item) => a + item.quantity, 0);
-  console.log(totalItems);
+
   // TOTAL PRICE
-  const originalPrice = cart.reduce((a, item) => a + item.quantity * item.price, 0);
-  console.log(originalPrice);
+  const originalPrice = cart.reduce(
+    (a, item) => a + item.quantity * item.price,
+    0
+  );
+
 
   // const handleAddCart = (id, name, price, image, unitdiscount, count) => {
   //   const indexExistCart = cart.findIndex((i) => i.id === id);
