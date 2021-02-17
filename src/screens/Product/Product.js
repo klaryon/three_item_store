@@ -5,7 +5,7 @@ import CardItem from "../../components/units/CardItem/CardItem";
 
 const Product = ({ items, handleAddCart, totalItems }) => {
   const cardItem = items.map((item) => (
-    <CardItem item={item} key={item.id} handleAddCart={handleAddCart} />
+    <CardItem key={item.id} item={item} handleAddCart={handleAddCart} />
   ));
 
   return (

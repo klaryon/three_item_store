@@ -21,162 +21,175 @@ const App = () => {
     fetchData();
   }, ["/"]);
 
-  const handleAddCart = (id, name, price, image, unitdiscount, count) => {
-    const indexExistCart = cart.findIndex((i) => i.id === id);
-    const greenTeaId = "GR1";
-    const strawberryId = "SR1";
-    const coffeeId = "CF1";
-
-    //REPLACE EXISTING ITEM
-    if (indexExistCart > -1 && id === greenTeaId) {
-      const doubleCount = count * 2;
-      const discount = unitdiscount * count;
-      const newCountObjectItem = {
-        id: id,
-        name: name,
-        price: price,
-        image: image,
-        count: doubleCount,
-        discount: discount,
-      };
-      cart.splice(indexExistCart, 1, newCountObjectItem);
-    } else if (indexExistCart > -1 && id === strawberryId && count <= 3) {
-      const discount = 0;
-      const newCountObjectItem = {
-        id: id,
-        name: name,
-        price: price,
-        image: image,
-        count: count,
-        discount: discount,
-      };
-      cart.splice(indexExistCart, 1, newCountObjectItem);
-    } else if (indexExistCart > -1 && id === strawberryId && count > 3) {
-      const discount = (count - 3) * unitdiscount;
-      const newCountObjectItem = {
-        id: id,
-        name: name,
-        price: price,
-        image: image,
-        count: count,
-        discount: discount,
-      };
-      cart.splice(indexExistCart, 1, newCountObjectItem);
-    } else if (indexExistCart > -1 && id === coffeeId && count < 3) {
-      const discount = 0;
-      const newCountObjectItem = {
-        id: id,
-        name: name,
-        price: price,
-        image: image,
-        count: count,
-        discount: discount,
-      };
-      cart.splice(indexExistCart, 1, newCountObjectItem);
-    } else if (indexExistCart > -1 && id === coffeeId && count >= 3) {
-      const discount = count * unitdiscount;
-      const newCountObjectItem = {
-        id: id,
-        name: name,
-        price: price,
-        image: image,
-        count: count,
-        discount: discount,
-      };
-      cart.splice(indexExistCart, 1, newCountObjectItem);
+  const handleAddCart = (item) => {
+    const exist = cart.find((x) => x.id === item.id);
+    if (exist) {
+      setCart(
+        cart.map((x) =>
+          x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCart([...cart, { ...item, qty: 1 }]);
     }
-    //PUSH NEW ITEM
-    else if (indexExistCart === -1 && id === greenTeaId) {
-      const doubleCount = count * 2;
-      const discount = unitdiscount * count;
-      const newObjectItem = {
-        id: id,
-        name: name,
-        price: price,
-        image: image,
-        count: doubleCount,
-        discount: discount,
-      };
-      cart.push(newObjectItem);
-    } else if (indexExistCart === -1 && id === strawberryId && count <= 3) {
-      const discount = 0;
-      const newObjectItem = {
-        id: id,
-        name: name,
-        price: price,
-        image: image,
-        count: count,
-        discount: discount,
-      };
-      cart.push(newObjectItem);
-    } else if (indexExistCart === -1 && id === strawberryId && count > 3) {
-      const discount = (count - 3) * unitdiscount;
-      const newObjectItem = {
-        id: id,
-        name: name,
-        price: price,
-        image: image,
-        count: count,
-        discount: discount,
-      };
-      cart.push(newObjectItem);
-    } else if (indexExistCart === -1 && id === coffeeId && count < 3) {
-      const discount = 0;
-      const newObjectItem = {
-        id: id,
-        name: name,
-        price: price,
-        image: image,
-        count: count,
-        discount: discount,
-      };
-      cart.push(newObjectItem);
-    } else if (indexExistCart === -1 && id === coffeeId && count >= 3) {
-      const discount = count * unitdiscount;
-      const newObjectItem = {
-        id: id,
-        name: name,
-        price: price,
-        image: image,
-        count: count,
-        discount: discount,
-      };
-      cart.push(newObjectItem);
-    }
-
-    // TOTAL ITEMS CART
-    let sumCart = 0;
-    cart.forEach((item) => {
-      sumCart += item.count;
-    });
-    setTotalItems(sumCart);
-
-    // TOTAL ORIGINAL PRICE
-    let sumOriginalPrice = 0;
-    cart.forEach((item) => {
-      sumOriginalPrice += item.price * item.count;
-    });
-    setOriginalPrice(sumOriginalPrice);
-
-    // TOTAL DISCOUNT
-    let totalDiscount = 0;
-    cart.forEach((item) => {
-      totalDiscount += item.discount;
-    });
-    setDiscount(totalDiscount);
-
-    // TOTAL PRICE
-    let totalPrice = 0;
-    cart.forEach((item) => {
-      totalPrice += item.price * item.count - item.discount;
-    });
-    setTotalPrice(totalPrice);
   };
 
+  // const handleAddCart = (id, name, price, image, unitdiscount, count) => {
+  //   const indexExistCart = cart.findIndex((i) => i.id === id);
+  //   const greenTeaId = "GR1";
+  //   const strawberryId = "SR1";
+  //   const coffeeId = "CF1";
+
+  //   //REPLACE EXISTING ITEM
+  //   if (indexExistCart > -1 && id === greenTeaId) {
+  //     const doubleCount = count * 2;
+  //     const discount = unitdiscount * count;
+  //     const newCountObjectItem = {
+  //       id: id,
+  //       name: name,
+  //       price: price,
+  //       image: image,
+  //       count: doubleCount,
+  //       discount: discount,
+  //     };
+  //     cart.splice(indexExistCart, 1, newCountObjectItem);
+  //   } else if (indexExistCart > -1 && id === strawberryId && count <= 3) {
+  //     const discount = 0;
+  //     const newCountObjectItem = {
+  //       id: id,
+  //       name: name,
+  //       price: price,
+  //       image: image,
+  //       count: count,
+  //       discount: discount,
+  //     };
+  //     cart.splice(indexExistCart, 1, newCountObjectItem);
+  //   } else if (indexExistCart > -1 && id === strawberryId && count > 3) {
+  //     const discount = (count - 3) * unitdiscount;
+  //     const newCountObjectItem = {
+  //       id: id,
+  //       name: name,
+  //       price: price,
+  //       image: image,
+  //       count: count,
+  //       discount: discount,
+  //     };
+  //     cart.splice(indexExistCart, 1, newCountObjectItem);
+  //   } else if (indexExistCart > -1 && id === coffeeId && count < 3) {
+  //     const discount = 0;
+  //     const newCountObjectItem = {
+  //       id: id,
+  //       name: name,
+  //       price: price,
+  //       image: image,
+  //       count: count,
+  //       discount: discount,
+  //     };
+  //     cart.splice(indexExistCart, 1, newCountObjectItem);
+  //   } else if (indexExistCart > -1 && id === coffeeId && count >= 3) {
+  //     const discount = count * unitdiscount;
+  //     const newCountObjectItem = {
+  //       id: id,
+  //       name: name,
+  //       price: price,
+  //       image: image,
+  //       count: count,
+  //       discount: discount,
+  //     };
+  //     cart.splice(indexExistCart, 1, newCountObjectItem);
+  //   }
+  //   //PUSH NEW ITEM
+  //   else if (indexExistCart === -1 && id === greenTeaId) {
+  //     const doubleCount = count * 2;
+  //     const discount = unitdiscount * count;
+  //     const newObjectItem = {
+  //       id: id,
+  //       name: name,
+  //       price: price,
+  //       image: image,
+  //       count: doubleCount,
+  //       discount: discount,
+  //     };
+  //     cart.push(newObjectItem);
+  //   } else if (indexExistCart === -1 && id === strawberryId && count <= 3) {
+  //     const discount = 0;
+  //     const newObjectItem = {
+  //       id: id,
+  //       name: name,
+  //       price: price,
+  //       image: image,
+  //       count: count,
+  //       discount: discount,
+  //     };
+  //     cart.push(newObjectItem);
+  //   } else if (indexExistCart === -1 && id === strawberryId && count > 3) {
+  //     const discount = (count - 3) * unitdiscount;
+  //     const newObjectItem = {
+  //       id: id,
+  //       name: name,
+  //       price: price,
+  //       image: image,
+  //       count: count,
+  //       discount: discount,
+  //     };
+  //     cart.push(newObjectItem);
+  //   } else if (indexExistCart === -1 && id === coffeeId && count < 3) {
+  //     const discount = 0;
+  //     const newObjectItem = {
+  //       id: id,
+  //       name: name,
+  //       price: price,
+  //       image: image,
+  //       count: count,
+  //       discount: discount,
+  //     };
+  //     cart.push(newObjectItem);
+  //   } else if (indexExistCart === -1 && id === coffeeId && count >= 3) {
+  //     const discount = count * unitdiscount;
+  //     const newObjectItem = {
+  //       id: id,
+  //       name: name,
+  //       price: price,
+  //       image: image,
+  //       count: count,
+  //       discount: discount,
+  //     };
+  //     cart.push(newObjectItem);
+  //   }
+
+  //   // TOTAL ITEMS CART
+  //   let sumCart = 0;
+  //   cart.forEach((item) => {
+  //     sumCart += item.count;
+  //   });
+  //   setTotalItems(sumCart);
+
+  //   // TOTAL ORIGINAL PRICE
+  //   let sumOriginalPrice = 0;
+  //   cart.forEach((item) => {
+  //     sumOriginalPrice += item.price * item.count;
+  //   });
+  //   setOriginalPrice(sumOriginalPrice);
+
+  //   // TOTAL DISCOUNT
+  //   let totalDiscount = 0;
+  //   cart.forEach((item) => {
+  //     totalDiscount += item.discount;
+  //   });
+  //   setDiscount(totalDiscount);
+
+  //   // TOTAL PRICE
+  //   let totalPrice = 0;
+  //   cart.forEach((item) => {
+  //     totalPrice += item.price * item.count - item.discount;
+  //   });
+  //   setTotalPrice(totalPrice);
+  // };
+
   console.log(cart);
-  console.log(originalPrice);
-  console.log(discount);
-  console.log(totalPrice);
+  // console.log(originalPrice);
+  // console.log(discount);
+  // console.log(totalPrice);
 
   return (
     <Switch>
