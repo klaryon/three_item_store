@@ -186,11 +186,6 @@ const App = () => {
           handleAddCart={handleAddCart}
           totalItems={totalItems}
         />
-        {/* <Product
-          items={data}
-          handleAddCart={handleAddCart}
-          totalItems={totalItems}
-        /> */}
       </Route>
       <Route exact path="/shop">
         <Shop
