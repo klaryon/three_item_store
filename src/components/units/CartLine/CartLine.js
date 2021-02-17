@@ -22,9 +22,9 @@ const CartLine = ({ item, handleAddCart, handleRemoveCart }) => {
           discounts: -{formatterNumber(item.discount)}
         </StyledDiscounts>
       </StyledInfoItem>
-      <button onClick={() => handleAddCart(item)}>+</button>
-      <StyledQuantity>Qty:{item.count}</StyledQuantity>
       <button onClick={() => handleRemoveCart(item)}>-</button>
+      <StyledQuantity>{item.quantity}</StyledQuantity>
+      <button onClick={() => handleAddCart(item)}>+</button>
     </StyledCartLine>
   );
 };

@@ -36,11 +36,8 @@ const Shop = ({
       <StyledShop>
         <StyledCartItems>
           <Heading>Cart</Heading>
-          {/* {totalPrice === 0 ? (
-            <EmptyCart>Your Cart is Empty! 🥺</EmptyCart>
-          ) : ( */}
+            {cart.length === 0 && <EmptyCart>Your Cart is Empty! 🥺</EmptyCart>}
             <StyledCartLines>{cartLine}</StyledCartLines>
-          {/* )} */}
         </StyledCartItems>
         <StyledPrice>
           <StyledPriceItems>

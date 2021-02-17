@@ -8,8 +8,6 @@ import axios from "../src/shared/api";
 const App = () => {
   const [data, setData] = useState([]);
   const [cart, setCart] = useState([]);
-  const [totalItems, setTotalItems] = useState(0);
-  const [originalPrice, setOriginalPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -32,13 +30,11 @@ const App = () => {
     } else {
       setCart([...cart, { ...item, quantity: 1 }]);
     }
-    
   };
   const handleRemoveCart = (item) => {
     const exist = cart.find((x) => x.id === item.id);
     if (exist.quantity === 1) {
-      setCart(cart.filter((x) => x.id !== item.id)
-      );
+      setCart(cart.filter((x) => x.id !== item.id));
     } else {
       setCart(
         cart.map((x) =>
@@ -46,7 +42,14 @@ const App = () => {
         )
       );
     }
-  }
+  };
+
+  // TOTAL ITEMS CART
+  const totalItems = cart.reduce((a, item) => a + item.quantity, 0);
+  console.log(totalItems);
+  // TOTAL PRICE
+  const originalPrice = cart.reduce((a, item) => a + item.quantity * item.price, 0);
+  console.log(originalPrice);
 
   // const handleAddCart = (id, name, price, image, unitdiscount, count) => {
   //   const indexExistCart = cart.findIndex((i) => i.id === id);
