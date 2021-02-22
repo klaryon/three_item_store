@@ -11,19 +11,20 @@ import {
 } from "./styles";
 import formatterNumber from "../../../helpers/utils";
 
-const CardItem = ({ item, handleAddCart }) => {
+const CardItem = ({ item, onAddCart }) => {
+  const { image, name, price, description } = item;
   return (
     <StyledCartItem>
-      <img src={item.image} alt={item.name} />
+      <img src={image} alt={name} />
       <StyledCardBody>
-        <Name>{item.name}</Name>
+        <Name>{name}</Name>
         <Price>
-          {formatterNumber(item.price)} <Unit>per unit</Unit>
+          {formatterNumber(price)} <Unit>per unit</Unit>
         </Price>
-        <SmallParagraph>{item.description}</SmallParagraph>
+        <SmallParagraph>{description}</SmallParagraph>
       </StyledCardBody>
       <StyledButton>
-        <Button onClick={() => handleAddCart(item)}>Add to Cart</Button>
+        <Button onClick={() => onAddCart(item)}>Add to Cart</Button>
       </StyledButton>
     </StyledCartItem>
   );

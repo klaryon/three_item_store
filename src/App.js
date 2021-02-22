@@ -8,8 +8,6 @@ import axios from "../src/shared/api";
 const App = () => {
   const [data, setData] = useState([]);
   const [cart, setCart] = useState([]);
-  const [discount, setDiscount] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     async function fetchData() {
@@ -19,215 +17,123 @@ const App = () => {
     fetchData();
   }, []);
 
-  const handleAddCart = (item) => {
-    const exist = cart.find((x) => x.id === item.id);
-    if (exist) {
-      setCart(
-        cart.map((x) =>
-          x.id === item.id ? { ...exist, quantity: exist.quantity + 1 } : x
-        )
-      );
-    } else {
-      setCart([...cart, { ...item, quantity: 1 }]);
+  const onAddCart = (selectedItem) => {
+    const exist = cart.find((item) => item.id === selectedItem.id);
+    exist
+      ? setCart((prevItems) => {
+          const updatedItem = { ...exist, quantity: exist.quantity + 1 };
+          checkOffers(updatedItem);
+
+          return prevItems.map((item) =>
+            item.id === selectedItem.id ? updatedItem : item
+          );
+        })
+      : setCart([...cart, { ...selectedItem, quantity: 1, discount: 0 }]);
+  };
+  const onRemoveCart = (selectedItem) => {
+    const exist = cart.find((item) => item.id === selectedItem.id);
+    exist.quantity === 1
+      ? setCart(cart.filter((item) => item.id !== selectedItem.id))
+      : setCart((prevItems) => {
+          const updatedItem = { ...exist, quantity: exist.quantity - 1 };
+          checkOffersDiscount(updatedItem);
+
+          return prevItems.map((item) =>
+            item.id === selectedItem.id ? updatedItem : item
+          );
+        });
+  };
+
+  const onClearCart = () => {
+    setCart([]);
+  };
+
+  //CHECKOFFERS
+  const checkOffers = (item) => {
+    let { id, unitdiscount, quantity } = item;
+    const greenTeaId = "GR1";
+    const strawberryId = "SR1";
+    const coffeeId = "CF1";
+
+    if (id === greenTeaId) {
+      item.quantityDouble = quantity * 2;
+    }
+    else if (id === strawberryId && quantity > 3) {
+      item.discount += unitdiscount;
+      console.log(item.discount);
+    } else if (id === coffeeId && quantity >= 3) {
+      item.discount = unitdiscount * quantity;
+      console.log(item.discount);
     }
   };
-  const handleRemoveCart = (item) => {
-    const exist = cart.find((x) => x.id === item.id);
-    if (exist.quantity === 1) {
-      setCart(cart.filter((x) => x.id !== item.id));
-    } else {
-      setCart(
-        cart.map((x) =>
-          x.id === item.id ? { ...exist, quantity: exist.quantity - 1 } : x
-        )
-      );
+  const checkOffersDiscount = (item) => {
+    let { id, unitdiscount, quantity } = item;
+    const greenTeaId = "GR1";
+    const strawberryId = "SR1";
+    const coffeeId = "CF1";
+
+    if (id === greenTeaId) {
+      item.quantityDouble = quantity * 2;
+    }
+    else if (id === strawberryId && quantity > 3) {
+      item.discount -= unitdiscount;
+      console.log(item.discount);
+    }     
+    else if (id === strawberryId && quantity <= 3) {
+      item.discount = 0;
+      console.log(item.discount);
+    } 
+    else if (id === coffeeId && quantity >= 3) {
+      item.discount = unitdiscount * quantity;
+      console.log(item.discount);
+    }     
+    else if (id === coffeeId && quantity < 3) {
+      item.discount = 0;
+      console.log(item.discount);
     }
   };
 
   // TOTAL ITEMS CART
-  const totalItems = cart.reduce((a, item) => a + item.quantity, 0);
-
-  // TOTAL PRICE
-  const originalPrice = cart.reduce(
-    (a, item) => a + item.quantity * item.price,
+  const totalItems = cart.reduce(
+    (accumulatedQty, item) => accumulatedQty + item.quantity,
     0
   );
 
+  // TOTAL ORIGINAL PRICE
+  const originalPrice = cart.reduce(
+    (accumulatedQty, item) => accumulatedQty + item.quantity * item.price,
+    0
+  );
 
-  // const handleAddCart = (id, name, price, image, unitdiscount, count) => {
-  //   const indexExistCart = cart.findIndex((i) => i.id === id);
-  //   const greenTeaId = "GR1";
-  //   const strawberryId = "SR1";
-  //   const coffeeId = "CF1";
+  // TOTAL DISCOUNT
+  const totalDiscount = cart.reduce(
+    (accumulatedQty, item) => (accumulatedQty += item.discount),
+    0
+  );
 
-  //   //REPLACE EXISTING ITEM
-  //   if (indexExistCart > -1 && id === greenTeaId) {
-  //     const doubleCount = count * 2;
-  //     const discount = unitdiscount * count;
-  //     const newCountObjectItem = {
-  //       id: id,
-  //       name: name,
-  //       price: price,
-  //       image: image,
-  //       count: doubleCount,
-  //       discount: discount,
-  //     };
-  //     cart.splice(indexExistCart, 1, newCountObjectItem);
-  //   } else if (indexExistCart > -1 && id === strawberryId && count <= 3) {
-  //     const discount = 0;
-  //     const newCountObjectItem = {
-  //       id: id,
-  //       name: name,
-  //       price: price,
-  //       image: image,
-  //       count: count,
-  //       discount: discount,
-  //     };
-  //     cart.splice(indexExistCart, 1, newCountObjectItem);
-  //   } else if (indexExistCart > -1 && id === strawberryId && count > 3) {
-  //     const discount = (count - 3) * unitdiscount;
-  //     const newCountObjectItem = {
-  //       id: id,
-  //       name: name,
-  //       price: price,
-  //       image: image,
-  //       count: count,
-  //       discount: discount,
-  //     };
-  //     cart.splice(indexExistCart, 1, newCountObjectItem);
-  //   } else if (indexExistCart > -1 && id === coffeeId && count < 3) {
-  //     const discount = 0;
-  //     const newCountObjectItem = {
-  //       id: id,
-  //       name: name,
-  //       price: price,
-  //       image: image,
-  //       count: count,
-  //       discount: discount,
-  //     };
-  //     cart.splice(indexExistCart, 1, newCountObjectItem);
-  //   } else if (indexExistCart > -1 && id === coffeeId && count >= 3) {
-  //     const discount = count * unitdiscount;
-  //     const newCountObjectItem = {
-  //       id: id,
-  //       name: name,
-  //       price: price,
-  //       image: image,
-  //       count: count,
-  //       discount: discount,
-  //     };
-  //     cart.splice(indexExistCart, 1, newCountObjectItem);
-  //   }
-  //   //PUSH NEW ITEM
-  //   else if (indexExistCart === -1 && id === greenTeaId) {
-  //     const doubleCount = count * 2;
-  //     const discount = unitdiscount * count;
-  //     const newObjectItem = {
-  //       id: id,
-  //       name: name,
-  //       price: price,
-  //       image: image,
-  //       count: doubleCount,
-  //       discount: discount,
-  //     };
-  //     cart.push(newObjectItem);
-  //   } else if (indexExistCart === -1 && id === strawberryId && count <= 3) {
-  //     const discount = 0;
-  //     const newObjectItem = {
-  //       id: id,
-  //       name: name,
-  //       price: price,
-  //       image: image,
-  //       count: count,
-  //       discount: discount,
-  //     };
-  //     cart.push(newObjectItem);
-  //   } else if (indexExistCart === -1 && id === strawberryId && count > 3) {
-  //     const discount = (count - 3) * unitdiscount;
-  //     const newObjectItem = {
-  //       id: id,
-  //       name: name,
-  //       price: price,
-  //       image: image,
-  //       count: count,
-  //       discount: discount,
-  //     };
-  //     cart.push(newObjectItem);
-  //   } else if (indexExistCart === -1 && id === coffeeId && count < 3) {
-  //     const discount = 0;
-  //     const newObjectItem = {
-  //       id: id,
-  //       name: name,
-  //       price: price,
-  //       image: image,
-  //       count: count,
-  //       discount: discount,
-  //     };
-  //     cart.push(newObjectItem);
-  //   } else if (indexExistCart === -1 && id === coffeeId && count >= 3) {
-  //     const discount = count * unitdiscount;
-  //     const newObjectItem = {
-  //       id: id,
-  //       name: name,
-  //       price: price,
-  //       image: image,
-  //       count: count,
-  //       discount: discount,
-  //     };
-  //     cart.push(newObjectItem);
-  //   }
-
-  //   // TOTAL ITEMS CART
-  //   let sumCart = 0;
-  //   cart.forEach((item) => {
-  //     sumCart += item.count;
-  //   });
-  //   setTotalItems(sumCart);
-
-  //   // TOTAL ORIGINAL PRICE
-  //   let sumOriginalPrice = 0;
-  //   cart.forEach((item) => {
-  //     sumOriginalPrice += item.price * item.count;
-  //   });
-  //   setOriginalPrice(sumOriginalPrice);
-
-  //   // TOTAL DISCOUNT
-  //   let totalDiscount = 0;
-  //   cart.forEach((item) => {
-  //     totalDiscount += item.discount;
-  //   });
-  //   setDiscount(totalDiscount);
-
-  //   // TOTAL PRICE
-  //   let totalPrice = 0;
-  //   cart.forEach((item) => {
-  //     totalPrice += item.price * item.count - item.discount;
-  //   });
-  //   setTotalPrice(totalPrice);
-  // };
+  // TOTAL PRICE
+  const totalPrice = cart.reduce(
+    (accumulatedQty, item) =>
+      accumulatedQty + (item.quantity * item.price - item.discount),
+    0
+  );
 
   console.log(cart);
-  // console.log(originalPrice);
-  // console.log(discount);
-  // console.log(totalPrice);
 
   return (
     <Switch>
       <Route exact path="/">
-        <Product
-          items={data}
-          handleAddCart={handleAddCart}
-          totalItems={totalItems}
-        />
+        <Product items={data} onAddCart={onAddCart} totalItems={totalItems} />
       </Route>
       <Route exact path="/shop">
         <Shop
           cart={cart}
-          handleAddCart={handleAddCart}
-          handleRemoveCart={handleRemoveCart}
+          onAddCart={onAddCart}
+          onRemoveCart={onRemoveCart}
+          onClearCart={onClearCart}
           totalItems={totalItems}
           originalPrice={originalPrice}
-          discount={discount}
+          totalDiscount={totalDiscount}
           totalPrice={totalPrice}
         />
       </Route>

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Colors from "../../../theme/Colors";
-import device from "../../../helpers/responsive";
 
 export const StyledCounter = styled.div`
   display: flex;

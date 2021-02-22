@@ -23,17 +23,18 @@ const Shop = ({
   cart,
   totalItems,
   originalPrice,
-  discount,
+  totalDiscount,
   totalPrice,
-  handleAddCart,
-  handleRemoveCart,
+  onAddCart,
+  onRemoveCart,
+  onClearCart,
 }) => {
   const cartLine = cart.map((item) => (
     <CartLine
       key={item.id}
       item={item}
-      handleAddCart={handleAddCart}
-      handleRemoveCart={handleRemoveCart}
+      onAddCart={onAddCart}
+      onRemoveCart={onRemoveCart}
     />
   ));
 
@@ -52,12 +53,12 @@ const Shop = ({
               {formatterNumber(originalPrice.toFixed(2))}
             </OriginalPrice>
             <Title>Discounts:</Title>
-            <Discounts>-{formatterNumber(discount.toFixed(2))}</Discounts>
+            <Discounts>-{formatterNumber(totalDiscount.toFixed(2))}</Discounts>
             <Title>Total Price:</Title>
             <TotalPrice>{formatterNumber(totalPrice.toFixed(2))}</TotalPrice>
             <StyledCheckout>
               <Checkout>Checkout</Checkout>
-              <StyledClear>clear</StyledClear>
+              <StyledClear onClick={onClearCart}>clear</StyledClear>
             </StyledCheckout>
           </StyledPriceItems>
         </StyledPrice>

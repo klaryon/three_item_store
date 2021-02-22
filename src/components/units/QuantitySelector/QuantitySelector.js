@@ -1,12 +1,13 @@
 import React from "react";
 import { StyledCounter, Button, StyledQuantity } from "./styles";
 
-const QuantitySelector = ({ item, handleRemoveCart, handleAddCart }) => {
+const QuantitySelector = ({ item, onRemoveCart, onAddCart }) => {
+  const { quantity } = item;
   return (
     <StyledCounter>
-      <Button onClick={() => handleRemoveCart(item)}>-</Button>
-      <StyledQuantity>{item.quantity}</StyledQuantity>
-      <Button onClick={() => handleAddCart(item)}>+</Button>
+      <Button onClick={() => onRemoveCart(item)}>-</Button>
+      <StyledQuantity>{quantity}</StyledQuantity>
+      <Button onClick={() => onAddCart(item)}>+</Button>
     </StyledCounter>
   );
 };

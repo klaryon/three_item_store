@@ -14,7 +14,7 @@
       "image": "https://github.com/klaryon/three_item_store/blob/develop/src/assets/images/strawberries.jpg?raw=true",
       "price": 5.0,
       "unitdiscount": 0.5,
-      "description": "Buy 3 at original price, then get €0.50 discount per unit"
+      "description": "Buy 3 at original price, then get £0.50 discount per unit"
     },
     {
       "id": "CF1",
@@ -22,7 +22,7 @@
       "image": "https://github.com/klaryon/three_item_store/blob/develop/src/assets/images/coffee.jpg?raw=true",
       "price": 11.23,
       "unitdiscount": 3.74,
-      "description": "Buy 3, and all your items get €3.74 discount per unit"
+      "description": "Buy 3, and all your items get £3.74 discount per unit"
     }
   ]
 }
