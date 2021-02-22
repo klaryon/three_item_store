@@ -24,7 +24,7 @@ export const StyledCartItems = styled.div`
     height: 20rem;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-right: 10rem;
+    margin-right: 20rem;
   }
 `;
 export const StyledCartLines = styled.div`
@@ -120,10 +120,10 @@ export const StyledClear = styled.a`
   }
 `;
 export const EmptyCart = styled.div`
-    font-size: 1.2rem;
-    letter-spacing: 0.1rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
 
-    @media ${device.laptop} {
-      font-size: 1.4rem;
+  @media ${device.laptop} {
+    font-size: 1.4rem;
   }
 `;

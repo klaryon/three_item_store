@@ -19,19 +19,33 @@ import {
 } from "./styles";
 import formatterNumber from "../../helpers/utils";
 
-const Shop = ({ cart, totalItems, originalPrice, discount, totalPrice }) => {
-  const cartLine = cart.map((item) => <CartLine item={item} key={item.id} />);
+const Shop = ({
+  cart,
+  totalItems,
+  originalPrice,
+  totalDiscount,
+  totalPrice,
+  onAddCart,
+  onRemoveCart,
+  onClearCart,
+  onCheckOut,
+}) => {
+  const cartLine = cart.map((item) => (
+    <CartLine
+      key={item.id}
+      item={item}
+      onAddCart={onAddCart}
+      onRemoveCart={onRemoveCart}
+    />
+  ));
 
   return (
     <Body totalItems={totalItems}>
       <StyledShop>
         <StyledCartItems>
           <Heading>Cart</Heading>
-          {totalPrice === 0 ? (
-            <EmptyCart>Your Cart is Empty! 🥺</EmptyCart>
-          ) : (
-            <StyledCartLines>{cartLine}</StyledCartLines>
-          )}
+          {cart.length === 0 && <EmptyCart>Your Cart is Empty! 🥺</EmptyCart>}
+          <StyledCartLines>{cartLine}</StyledCartLines>
         </StyledCartItems>
         <StyledPrice>
           <StyledPriceItems>
@@ -40,12 +54,12 @@ const Shop = ({ cart, totalItems, originalPrice, discount, totalPrice }) => {
               {formatterNumber(originalPrice.toFixed(2))}
             </OriginalPrice>
             <Title>Discounts:</Title>
-            <Discounts>-{formatterNumber(discount.toFixed(2))}</Discounts>
+            <Discounts>-{formatterNumber(totalDiscount.toFixed(2))}</Discounts>
             <Title>Total Price:</Title>
             <TotalPrice>{formatterNumber(totalPrice.toFixed(2))}</TotalPrice>
             <StyledCheckout>
-              <Checkout>Checkout</Checkout>
-              <StyledClear>clear</StyledClear>
+              <Checkout onClick={onCheckOut}>Checkout</Checkout>
+              <StyledClear onClick={onClearCart}>clear</StyledClear>
             </StyledCheckout>
           </StyledPriceItems>
         </StyledPrice>

@@ -5,24 +5,34 @@ import {
   StyledInfoItem,
   InfoSmall,
   InfoSmall2,
-  StyledQuantity,
   StyledDiscounts,
 } from "./styles";
 import formatterNumber from "../../../helpers/utils";
+import QuantitySelector from "../QuantitySelector/QuantitySelector";
 
-const CartLine = ({ item }) => {
+const CartLine = ({ item, onAddCart, onRemoveCart }) => {
+  const { image, name, id, price, discount, quantityDouble } = item;
+  const greenTeaId = "GR1";
   return (
     <StyledCartLine>
-      <img src={item.image} alt={item.name} />
+      <img src={image} alt={name} />
       <StyledInfoItem>
-        <StyledName>{item.name}</StyledName>
-        <InfoSmall>id: {item.id}</InfoSmall>
-        <InfoSmall2>Price unit: {formatterNumber(item.price)}</InfoSmall2>
-        <StyledDiscounts>
-          discounts: -{formatterNumber(item.discount)}
-        </StyledDiscounts>
+        <StyledName>{name}</StyledName>
+        <InfoSmall>id: {id}</InfoSmall>
+        <InfoSmall2>Price unit: {formatterNumber(price)}</InfoSmall2>
+        {id === greenTeaId ? (
+          <StyledDiscounts>Total items: {quantityDouble}</StyledDiscounts>
+        ) : (
+          <StyledDiscounts>
+            discounts: -{formatterNumber(discount)}
+          </StyledDiscounts>
+        )}
       </StyledInfoItem>
-      <StyledQuantity>Qty:{item.count}</StyledQuantity>
+      <QuantitySelector
+        item={item}
+        onAddCart={onAddCart}
+        onRemoveCart={onRemoveCart}
+      />
     </StyledCartLine>
   );
 };

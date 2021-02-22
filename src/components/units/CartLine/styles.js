@@ -46,9 +46,6 @@ export const InfoSmall2 = styled.small`
     letter-spacing: 0.1rem;
   }
 `;
-export const StyledQuantity = styled.div`
-  letter-spacing: 0.2rem;
-`;
 export const StyledDiscounts = styled.div`
   letter-spacing: 0.03rem;
   color: ${Colors.salmon};

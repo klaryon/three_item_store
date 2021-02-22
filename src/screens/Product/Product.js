@@ -3,9 +3,9 @@ import Body from "../../components/layout/Body/Body";
 import { StyledProduct } from "./styles";
 import CardItem from "../../components/units/CardItem/CardItem";
 
-const Product = ({ items, handleAddCart, totalItems }) => {
+const Product = ({ items, onAddCart, totalItems }) => {
   const cardItem = items.map((item) => (
-    <CardItem item={item} key={item.id} handleAddCart={handleAddCart} />
+    <CardItem key={item.id} item={item} onAddCart={onAddCart} />
   ));
 
   return (

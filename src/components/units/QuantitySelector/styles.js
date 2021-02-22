@@ -3,26 +3,24 @@ import Colors from "../../../theme/Colors";
 
 export const StyledCounter = styled.div`
   display: flex;
+  height: 3rem;
+  margin-top: 0.5rem;
 `;
-export const Input = styled.input`
+export const StyledQuantity = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: ${Colors.leaf};
   font-weight: bold;
   width: 3rem;
-  height: 2.5rem;
   margin-right: 0.3rem;
   margin-left: 0.3rem;
-  text-align: center;
   border: none;
-  border-radius: 0.5rem;
-
-  &:focus {
-    outline: none;
-    box-shadow: 0px 0px 2px ${Colors.leaf};
-  }
 `;
 export const Button = styled.button`
   color: ${Colors.leaf};
-  background-color: ${Colors.beige};
+  background-color: ${Colors.white};
+  font-weight: bold;
   width: 3rem;
   border: none;
   border-radius: 0.5rem;
@@ -34,6 +32,6 @@ export const Button = styled.button`
   }
 
   &:hover {
-    background-color: rgba(${Colors.beigeRgb}, 0.7);
+    background-color: rgba(${Colors.leafRgb}, 0.1);
   }
 `;

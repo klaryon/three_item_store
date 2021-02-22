@@ -1,12 +1,13 @@
 import React from "react";
-import { StyledCounter, Input, Button } from "./styles";
+import { StyledCounter, Button, StyledQuantity } from "./styles";
 
-const QuantitySelector = ({ count, increment, decrement, handleChange }) => {
+const QuantitySelector = ({ item, onRemoveCart, onAddCart }) => {
+  const { quantity } = item;
   return (
     <StyledCounter>
-      <Button onClick={decrement}>-</Button>
-      <Input onChange={handleChange} value={isNaN(count) ? "" : count} />
-      <Button onClick={increment}>+</Button>
+      <Button onClick={() => onRemoveCart(item)}>-</Button>
+      <StyledQuantity>{quantity}</StyledQuantity>
+      <Button onClick={() => onAddCart(item)}>+</Button>
     </StyledCounter>
   );
 };
