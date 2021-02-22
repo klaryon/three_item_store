@@ -19,6 +19,7 @@ const App = () => {
 
   const onAddCart = (selectedItem) => {
     const exist = cart.find((item) => item.id === selectedItem.id);
+    const greenTeaId = "GR1";
     exist
       ? setCart((prevItems) => {
           const updatedItem = { ...exist, quantity: exist.quantity + 1 };
@@ -28,7 +29,19 @@ const App = () => {
             item.id === selectedItem.id ? updatedItem : item
           );
         })
-      : setCart([...cart, { ...selectedItem, quantity: 1, discount: 0 }]);
+      : setCart(
+        selectedItem.id === greenTeaId
+            ? [
+                ...cart,
+                {
+                  ...selectedItem,
+                  quantity: 1,
+                  quantityDouble: 2,
+                  discount: 0
+                },
+              ]
+            : [...cart, { ...selectedItem, quantity: 1, discount: 0 }]
+        );
   };
   const onRemoveCart = (selectedItem) => {
     const exist = cart.find((item) => item.id === selectedItem.id);
@@ -57,8 +70,7 @@ const App = () => {
 
     if (id === greenTeaId) {
       item.quantityDouble = quantity * 2;
-    }
-    else if (id === strawberryId && quantity > 3) {
+    } else if (id === strawberryId && quantity > 3) {
       item.discount += unitdiscount;
       console.log(item.discount);
     } else if (id === coffeeId && quantity >= 3) {
@@ -74,23 +86,25 @@ const App = () => {
 
     if (id === greenTeaId) {
       item.quantityDouble = quantity * 2;
-    }
-    else if (id === strawberryId && quantity > 3) {
+    } else if (id === strawberryId && quantity > 3) {
       item.discount -= unitdiscount;
       console.log(item.discount);
-    }     
-    else if (id === strawberryId && quantity <= 3) {
+    } else if (id === strawberryId && quantity <= 3) {
       item.discount = 0;
       console.log(item.discount);
-    } 
-    else if (id === coffeeId && quantity >= 3) {
+    } else if (id === coffeeId && quantity >= 3) {
       item.discount = unitdiscount * quantity;
       console.log(item.discount);
-    }     
-    else if (id === coffeeId && quantity < 3) {
+    } else if (id === coffeeId && quantity < 3) {
       item.discount = 0;
       console.log(item.discount);
     }
+  };
+
+  const onCheckOut = () => {
+    totalItems === 0
+      ? alert("Your cart is empty ❔, please select any item")
+      : alert("Proceed to checkout 🙃");
   };
 
   // TOTAL ITEMS CART
@@ -131,6 +145,7 @@ const App = () => {
           onAddCart={onAddCart}
           onRemoveCart={onRemoveCart}
           onClearCart={onClearCart}
+          onCheckOut={onCheckOut}
           totalItems={totalItems}
           originalPrice={originalPrice}
           totalDiscount={totalDiscount}

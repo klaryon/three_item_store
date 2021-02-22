@@ -21,9 +21,7 @@ const CartLine = ({ item, onAddCart, onRemoveCart }) => {
         <InfoSmall>id: {id}</InfoSmall>
         <InfoSmall2>Price unit: {formatterNumber(price)}</InfoSmall2>
         {id === greenTeaId ? (
-          <StyledDiscounts>
-            Total items: {formatterNumber(quantityDouble)}
-          </StyledDiscounts>
+          <StyledDiscounts>Total items: {quantityDouble}</StyledDiscounts>
         ) : (
           <StyledDiscounts>
             discounts: -{formatterNumber(discount)}

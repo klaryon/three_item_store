@@ -28,6 +28,7 @@ const Shop = ({
   onAddCart,
   onRemoveCart,
   onClearCart,
+  onCheckOut,
 }) => {
   const cartLine = cart.map((item) => (
     <CartLine
@@ -57,7 +58,7 @@ const Shop = ({
             <Title>Total Price:</Title>
             <TotalPrice>{formatterNumber(totalPrice.toFixed(2))}</TotalPrice>
             <StyledCheckout>
-              <Checkout>Checkout</Checkout>
+              <Checkout onClick={onCheckOut}>Checkout</Checkout>
               <StyledClear onClick={onClearCart}>clear</StyledClear>
             </StyledCheckout>
           </StyledPriceItems>
