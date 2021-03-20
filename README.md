@@ -51,9 +51,23 @@ to be flexible regarding our pricing rules.
 The application must be demoable without an actual backend (use some approriate
 client-side API server for demoing)
 
+## Tools & Languages
+
+* React
+* styled-components
+* Axios
+* json-server
+
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `yarn server`
+
+Loads db.json database with json-server.
+Open [http://localhost:3005/data](http://localhost:3005/data) to view database in the browser.
+
+Then database loads in http://localhost:3000 and can be viewed in the app.
 
 ### `yarn start`
 
