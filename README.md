@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Get a preview at:
+* Codesandbox: https://codesandbox.io/s/three-item-store-qiq8r?file=/src/components/units/CartLine/CartLine.js
+* Deployed with firebase: https://three-item-store.web.app/
+
 ![alt text](https://github.com/klaryon/three_item_store/blob/develop/src/assets/gif/three-item-store.gif?raw=true)
 
 ## Task description
