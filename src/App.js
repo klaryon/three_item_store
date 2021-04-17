@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Product from "./screens/Product/Product";
 import Shop from "./screens/Shop/Shop";
-import axios from "../src/shared/api";
-// import data from "../src/shared/data";
+// import axios from "../src/shared/api";
+import data from "../src/shared/data";
 
 const App = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get("/");
-      setData(response.data);
-    }
-    fetchData();
-  }, []);
+  //COMMENTS ACTIVATE json-server
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await axios.get("/");
+  //     setData(response.data);
+  //   }
+  //   fetchData();
+  // }, []);
 
   const onAddCart = (selectedItem) => {
     const exist = cart.find((item) => item.id === selectedItem.id);
