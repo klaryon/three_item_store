@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Three item store
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -61,6 +61,8 @@ client-side API server for demoing)
 * styled-components
 * Axios
 * json-server
+
+# Getting Started with Create React App
 
 ## Available Scripts
 
