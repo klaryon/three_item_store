@@ -28,8 +28,7 @@ export const StyledCartItems = styled.div`
   }
 `;
 export const StyledCartLines = styled.div`
-  display: flex;
-  flex-direction: column;
+
 `;
 export const StyledPrice = styled.div`
   display: flex;
